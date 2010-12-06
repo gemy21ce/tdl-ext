@@ -302,6 +302,10 @@ tr.active-row
 	outline:none;
 	margin-left:258px;
 	}
+.select-menu
+{
+	float: left;direction: rtl;margin-left:258px;width:145px;
+	}
 .add-options
 {
 	float:left;
