@@ -254,6 +254,7 @@ tr.active-row
 	border:0;
 	margin-left:10px;
 	}
+.btn:hover{background:url(../images/buttton-hover.png) no-repeat;}
 .add-container
 {
 	float:left;
@@ -408,3 +409,5 @@ tr.active-row
 	margin-left:25px;
 	margin-top:12px;
 	}
+.add-btn:hover
+{background:url(../images/add-btn-hover.png) no-repeat;}

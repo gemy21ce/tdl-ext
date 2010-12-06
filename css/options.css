@@ -129,6 +129,10 @@ a
 	margin-right:40px;
 	cursor:pointer;
 	}
+.sync-button:hover
+{
+	background:url(../images/zamn-hover.png) no-repeat;
+	}
 .second-title
 {
 	margin-top:20px;
@@ -252,4 +256,8 @@ table.radioTable tr.send-tr td {
 	margin-left:7px;
 	margin-top:5px;
 	cursor:pointer;
+	}
+.save-button:hover
+{
+	background:url(../images/save-btn-hover.png) no-repeat;
 	}
