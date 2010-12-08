@@ -22,7 +22,7 @@ img{border:0;}
 {
 	float:left;
 	height:23px;
-	background:url(../images/setting.jpg) no-repeat;
+	background:url(../images/setting.png) no-repeat;
 	padding-left: 25px;
 	line-height:23px;
 	margin:13px 0 0 13px;
@@ -37,7 +37,7 @@ img{border:0;}
 {
 	float:right;
 	height:31px;
-	background:url(../images/list.jpg) no-repeat right;
+	background:url(../images/list.png) no-repeat right;
 	padding-right: 36px;
 	line-height:31px;
 	margin:9px 9px 0 0;
@@ -253,6 +253,9 @@ tr.active-row
 	background:url(../images/buttton.png) no-repeat;
 	border:0;
 	margin-left:10px;
+	font-size:11pt;
+	color:#FFF;
+	font-family:Tahoma, Geneva, sans-serif;
 	}
 .btn:hover{background:url(../images/buttton-hover.png) no-repeat;}
 .add-container
@@ -404,10 +407,13 @@ tr.active-row
 	float:left;
 	width:72px;
 	height:24px;
-	background:url(../images/add-btn.png) no-repeat;
+	background:url(../images/dark-btn.png) no-repeat;
 	border:0;
 	margin-left:25px;
 	margin-top:12px;
+	font-size:11pt;
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#FFF;
 	}
 .add-btn:hover
-{background:url(../images/add-btn-hover.png) no-repeat;}
+{background:url(../images/dark-btn-hover.png) no-repeat;}

@@ -1,0 +1,98 @@
+.main-container
+{
+	background:#FFF;
+	-webkit-box-shadow: 0px 0px 8px #818181;
+	}
+.settings a
+{
+	color:#41779b;
+	}
+.tasks-icon
+{
+	color:#41779b;
+	}
+.tools-container
+{
+	background:#e8e8e8;
+	}
+.validation-area
+{
+	background:#f2f2f2;
+	}
+h2.trigger {
+	background: #e8e8e8 url(../images/collapse-blue.png) no-repeat 537px 8px;
+	}
+h2.trigger a
+{
+	color:#41779b;
+	}
+h2.active {
+	background-image:url(../images/expand-blue.png);}
+.toggle_container tr {
+ background:#f2f2f2;}
+tr.unread-row
+{
+	background:#FFF;
+	}
+tr.active-row
+{
+	background-color:#fffdbe;
+	}
+.toggle_container td
+{
+	border-top:1px solid #FFF;
+	}
+.bottom-label{color:#41779b;}
+.bottom-area {
+margin-bottom: 0px;}
+.add-container
+{
+	-webkit-box-shadow: 0px 0px 5px #818181;
+	background:#FFF;
+	margin-top:6px;
+	}
+.options, .repeat-options
+{
+	background:url(../images/options-whit.png) no-repeat;
+}
+.add-title
+{
+	color:#41779b;
+	border-bottom:1px solid #41779b;
+	}
+.field-label
+{
+	color:#41779b;
+	}
+.txt-input
+{
+	background:url(../images/text-input-white.png) no-repeat;
+}
+.small-input
+{
+	background:url(../images/small-input-white.png) no-repeat;
+	}
+.date-options, .time-options
+{
+	background:url(../images/time-options-white.png) no-repeat;
+}
+.btn
+{
+	background:url(../images/buttton-white.png) no-repeat;
+	}
+.btn:hover{background:url(../images/buttton-white-hover.png) no-repeat;}
+.comment
+{
+	background:url(../images/comment-white.png) no-repeat;}
+.add-btn
+{
+	
+	background:url(../images/buttton-white.png) no-repeat;
+	width:74px;
+	height:25px;
+	}
+.add-btn:hover{
+	background:url(../images/buttton-white-hover.png) no-repeat;
+	width:74px;
+	height:25px;
+}
