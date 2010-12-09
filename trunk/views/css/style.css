@@ -55,7 +55,7 @@ img{border:0;}
     margin:10px 0 0 9px;
 }
 /*tooltip style */
-#text {margin:3px 0 0 10px; width:100px}
+#text {margin:3px 0 0 5px; width:100px}
 .hotspot {color:#900; padding-bottom:1px;cursor:pointer; margin:0 5px;}
 
 #tt {position:absolute; display:block; background:url(images/tt_left.gif) top left no-repeat}
@@ -171,6 +171,7 @@ tr.active-row
     margin-top:4px;
     float:left;
     margin-bottom:7px;
+	position:relative;
 }
 .bottom-label{
     float:right;
@@ -207,7 +208,7 @@ tr.active-row
     width:109px;
     background:#dddddd;
     bottom: 28px;
-    right: 4px;
+    right: 60px;
     display:none;
 }
 .menu ul, .repeat-menu ul
@@ -292,16 +293,20 @@ tr.active-row
     color:#FFF;
     font-size:10pt;
     line-height:25px;
+	min-width:100px;
+	text-align:right;
 }
 .txt-input
 {
-    float:left;
+    float:right;
     width:145px;
     height:24px;
     background:url(../images/text-input.png) no-repeat;
     border:0;
     outline:none;
-    margin-left:258px;
+    margin-right:20px;
+	padding:0 10px;
+	text-align:right;
 }
 .add-options
 {
@@ -388,12 +393,13 @@ tr.active-row
 .comment
 {
     float:left;
-    width:398px;
-    height:72px;
+    width:402px;
+    height:75px;
     background:url(../images/comment.png) no-repeat;
     border:0;
     outline:none;
     text-align:right;
+	padding:10px;
 }
 .add-btn
 {
