@@ -8,10 +8,12 @@ and open the template in the editor.
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <link type="text/css" rel="stylesheet" href="css/ui.selectmenu.css" />
         <link type="text/css" rel="stylesheet" href="css/smoothness/jquery-ui-1.8.6.custom.css" />
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="js/jquery-ui-1.8.6.custom.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript" src="js/ui.selectmenu.js"></script>
         <script src="../controllers/dbConnectors.js" type="text/javascript"></script>
         <script src="../controllers/popup.js" type="text/javascript"></script>
     </head>
@@ -29,9 +31,9 @@ and open the template in the editor.
                 <div id="main-page">
                     <div class="tools-container">
                         <p id="text">
-                            <span id="addbutton" class="hotspot" onmouseover="tooltip.show('<strong>اضافة</strong>');" onmouseout="tooltip.hide();"><img alt="" src="images/add.png" width="16" height="16" /></span>
-                            <span id="deletebutton" class="hotspot" onmouseover="tooltip.show('<strong>حذف</strong>');" onmouseout="tooltip.hide();"><img alt="" src="images/delete.png" width="16" height="16" /></span>
-                            <span class="hotspot" onmouseover="tooltip.show('<strong>تزامن</strong>');" onmouseout="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>
+                            <span id="addbutton" class="hotspot" onMouseOver="tooltip.show('<strong>اضافة</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/add.png" width="16" height="16" /></span>
+                            <span id="deletebutton" class="hotspot" onMouseOver="tooltip.show('<strong>حذف</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/delete.png" width="16" height="16" /></span>
+                            <span class="hotspot" onMouseOver="tooltip.show('<strong>تزامن</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>
                     </div>
                     <div class="tasks-container">
                         <h2 class="trigger active" id="todaytasks">
@@ -114,7 +116,7 @@ and open the template in the editor.
                                 <li><a >المهام الغير مكتملة</a></li>
                             </ul>
                         </div>
-                        <input name="" onclick="POPUP.getSelectedRows();" type="submit" value="" class="btn"/>
+                        <input name="" onClick="POPUP.getSelectedRows();" type="submit" value="" class="btn"/>
                     </div>
                 </div>
                 <div class="add-container" style="display: none;" id="add-container">
@@ -140,7 +142,7 @@ and open the template in the editor.
                                     </ul>
                                 </div>
                             </div>-->
-                            <select id="priority">
+                            <select id="priorityType">
                                 <option disabled>اختر</option>
                                 <option value="reg">عادي</option>
                                 <option value="imp">هام</option>
@@ -166,7 +168,7 @@ and open the template in the editor.
                                 <option value="daily">يومي</option>
                                 <option value="weekly">اسبوعي</option>
                                 <option value="monthly">شهري</option>
-                                <option value="annual">سنوس</option>
+                                <option value="annual">سنوي</option>
                             </select>
                         </div>
                         <div class="field-container">
