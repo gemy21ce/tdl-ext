@@ -27,6 +27,10 @@ var POPUP={
         $("#updateTask").click(function(){
             POPUP.updateTask();
         });
+		$('select#reminderType').selectmenu({maxHeight: 550});
+		$('select#priorityType').selectmenu({maxHeight: 550});
+		
+		
 
     },
     populateInRows:function(list,tableId){
