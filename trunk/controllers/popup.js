@@ -5,33 +5,9 @@
 
 var POPUP={
     init:function(){
+        $(".toggle_container").hide();
         POPUP.triggerTasks('todaytasks');
-        $('#optionPage').click(function(){
-            POPUP.OpenOptionPage();
-        });
-        $("#addbutton").click(function(){
-            POPUP.OpenAddForm();
-        });
-        $("#close-addForm").click(function(){
-            POPUP.backToMain();
-        });
-        $("#closeAlertBox").click(function(){
-            POPUP.hideErrorBox();
-        });
-        $("#addEvent").click(function(){
-            POPUP.validate();
-        });
-        $("#deletebutton").click(function(){
-            POPUP.deleteRows();
-        });
-        $("#updateTask").click(function(){
-            POPUP.updateTask();
-        });
-		$('select#reminderType').selectmenu({maxHeight: 550});
-		$('select#priorityType').selectmenu({maxHeight: 550});
-		
-		
-
+        $("#todays").show();
     },
     populateInRows:function(list,tableId){
         var out='';
@@ -45,6 +21,7 @@ var POPUP={
             out+='</tr>'
         }
         $("#"+tableId).html(out);
+        POPUP.highlightChecked();
     },
     triggerTasks:function(day){
         switch (day){
@@ -63,7 +40,14 @@ var POPUP={
             case 'oldtasks':{
                 tododb.getOldTasks(function(list){
                     POPUP.populateInRows(list, 'oldTaskTable');
-                })
+                });
+                break;
+            }
+            case 'upcommingtasks':{
+                tododb.getUpcommingTasks(function(list){
+                    POPUP.populateInRows(list, 'upcommingTable');
+                });
+                break;
             }
         }
     },
@@ -88,6 +72,7 @@ var POPUP={
     addNewTask:function(task){
         tododb.save(task, function(){
             POPUP.backToMain();
+            POPUP.init();
         });
     },
     validate:function(){
@@ -101,13 +86,12 @@ var POPUP={
             priority:$('#priority').attr('value'),
             expired:false
         }
-        if(task.title == '' && task.startdate == '' && task.time == ''){
-            POPUP.showError('بعض الحقول يجب أن تكون مكتملة');
+        if(task.title == '' || task.startdate == '' || task.time == ''){
+            POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
         }
         POPUP.addNewTask(task);
-        POPUP.triggerTasks('todaytasks');
     },
     showError:function(msg){
         $('#errorMSG').html(msg);
@@ -133,12 +117,12 @@ var POPUP={
     deleteRows:function(){
         var rows=POPUP.selectedRows();
         if(rows.length ==0){
-            POPUP.showError('يجب أن تختار المهام المراد حذفها');
+            POPUP.showError('??? ?? ????? ?????? ?????? ?????');
             return;
         }
         for(i in rows){
             tododb.deleteRec(rows[i], function(){
-                POPUP.triggerTasks('todaytasks');
+                POPUP.init();
             });
         }
     },
@@ -171,21 +155,30 @@ var POPUP={
             expired:$('#completedTask').attr('value')
         }
         if(task.title == '' && task.startdate == '' && task.time == ''){
-            POPUP.showError('بعض الحقول يجب أن تكون مكتملة');
+            POPUP.showError('??? ?????? ??? ?? ???? ??????');
             POPUP.calledRed('required', 2000);
             return;
         }
         tododb.update(task, function(){
-            POPUP.triggerTasks('todaytasks');
+            POPUP.init();
             POPUP.backToMain();
         })
 
+    },
+    highlightChecked:function(){
+        $(':checkbox').click(function(){
+            if(this.checked){
+                $(this.parentNode.parentNode).addClass('active-row');
+            }else{
+                $(this.parentNode.parentNode).removeClass('active-row');
+            }
+        });
     }
 }
 $(function(){
 
     //default popup page
-    $(".toggle_container").hide();
+    //    $(".toggle_container").hide();
 
     $("h2.trigger").toggle(function(){
         $(this).addClass("active");
@@ -202,7 +195,6 @@ $(function(){
     $("div.options").click(function () {
         $("div.menu").slideToggle("slow");
     });
-    $("#todays").show();
     //--
     //add page
     $("div.options").click(function () {
@@ -230,7 +222,36 @@ $(function(){
         ampm:true
     });
 
+    //--click  stuff
+    $('#optionPage').click(function(){
+        POPUP.OpenOptionPage();
+    });
+    $("#addbutton").click(function(){
+        POPUP.OpenAddForm();
+    });
+    $("#close-addForm").click(function(){
+        POPUP.backToMain();
+    });
+    $("#closeAlertBox").click(function(){
+        POPUP.hideErrorBox();
+    });
+    $("#addEvent").click(function(){
+        POPUP.validate();
+    });
+    $("#deletebutton").click(function(){
+        POPUP.deleteRows();
+    });
+    $("#updateTask").click(function(){
+        POPUP.updateTask();
+    });
+    $('select#reminderType').selectmenu({
+        maxHeight: 550
+    });
+    $('select#priorityType').selectmenu({
+        maxHeight: 550
+    });
     //--
+
     POPUP.init();
 });
 

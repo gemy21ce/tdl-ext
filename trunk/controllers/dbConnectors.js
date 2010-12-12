@@ -112,6 +112,21 @@ var tododb={
                 tododb.onError);
         });
     },
+    getUpcommingTasks:function(handler){
+        var date=util.tomorrow();
+        var matchingTasks=[];
+        this.db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM tasklist WHERE startdate > ?;",
+                [date],
+                function(tx, results) {
+                    for (i = 0; i < results.rows.length; i++) {
+                        matchingTasks.push(util.clone(results.rows.item(i)));
+                    }
+                    handler(matchingTasks);
+                },
+                tododb.onError);
+        });
+    },
     getTaskById:function(id,handler){
         var matchingTasks=[];
         this.db.transaction(function(tx) {
