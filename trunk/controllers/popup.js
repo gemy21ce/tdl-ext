@@ -208,10 +208,9 @@ $(function(){
     //default popup page
     //    $(".toggle_container").hide();
 
-    $("h2.trigger").toggle(function(){
+    $("h2.trigger").click(function(){
+        $("h2.trigger").removeClass('active');
         $(this).addClass("active");
-    }, function () {
-        $(this).removeClass("active");
     });
 
     $("h2.trigger").click(function(){
