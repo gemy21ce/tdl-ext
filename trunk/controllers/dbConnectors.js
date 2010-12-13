@@ -11,14 +11,19 @@ var util={
         return clone;
     },
     today:function(){
-        var today=new Date();
-        var todaystring=(today.getDate()>9?today.getDate():'0'+today.getDate())+'/'+((today.getMonth()+1)>9?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getFullYear();
+        var date=new Date();
+        var todaystring=(date.getDate()>9?date.getDate():'0'+date.getDate())+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
         return todaystring;
     },
     tomorrow:function(){
-        var today=new Date();
-        var todaystring=((today.getDate()+1)>9?(today.getDate()+1):'0'+(today.getDate()+1))+'/'+((today.getMonth()+1)>9?(today.getMonth()+1):'0'+(today.getMonth()+1))+'/'+today.getFullYear();
+        var date=new Date();
+        var todaystring=((date.getDate()+1)>9?(date.getDate()+1):'0'+(date.getDate()+1))+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
         return todaystring;
+    },
+    now:function(){
+       var date=new Date();
+       var now=(date.getHours()%12 > 9 ? date.getHours()%12 : '0'+(date.getHours()%12))+':'+(date.getMinutes()>9?date.getMinutes():'0'+(date.getMinutes()))+' '+(date.getHours() > 12?'pm':'am');
+       return now;
     }
 }
 var tododb={
@@ -103,6 +108,21 @@ var tododb={
         this.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate < ?;",
                 [date],
+                function(tx, results) {
+                    for (i = 0; i < results.rows.length; i++) {
+                        matchingTasks.push(util.clone(results.rows.item(i)));
+                    }
+                    handler(matchingTasks);
+                },
+                tododb.onError);
+        });
+    },
+    completedOldTasks:function(handler,completed){
+        var date=util.today();
+        var matchingTasks=[];
+        this.db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? and expired=?;",
+                [date,completed],
                 function(tx, results) {
                     for (i = 0; i < results.rows.length; i++) {
                         matchingTasks.push(util.clone(results.rows.item(i)));
