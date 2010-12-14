@@ -16,7 +16,8 @@ var POPUP={
             out+='<td width="25" height="26" align="center"><input name="" type="checkbox" value="'+list[i].id+'" /></td>';
             out+='<td width="100" height="26"onclick="POPUP.editTask('+list[i].id+')" style="cursor:pointer;">'+list[i].title+'</td>';
             out+='<td width="80" height="26" align="center">'+list[i].time+'</td>';
-            out+='<td width="185" height="26">'+list[i].content+'</td>';
+            out+='<td width="185" height="26">'+util.cutText(list[i].content, 20)+'</td>';
+            out+='<td width="100" height="26">'+list[i].startdate+'</td>';
             out+='<td width="25" height="26" align="center"><a onclick="POPUP.editTask('+list[i].id+')" style="cursor:pointer;"><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>';
             out+='</tr>'
         }
@@ -155,7 +156,9 @@ var POPUP={
             $('#time').attr('value',task.time);
             $('#reminder').attr('value',task.reminder);
             $('#priority').attr('value',task.priority);
-            $('#completedTask').attr('checked',task.expired);
+            if(task.expired=='true'){
+                document.getElementById('completedTask').checked=true
+            }
             POPUP.OpenAddForm();
             $("#completedcheck").show();
             $("#updateTask").show();
@@ -172,7 +175,7 @@ var POPUP={
             enddate:'',
             reminder:$('#reminder').attr('value'),
             priority:$('#priority').attr('value'),
-            expired:$('#completedTask').attr('value')
+            expired:$('#completedTask').attr('checked')
         }
         if(task.title == '' || task.startdate == '' || task.time == '' ){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
