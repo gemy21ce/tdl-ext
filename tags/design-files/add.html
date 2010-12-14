@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<!--defult style-->
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<!--white style-->
+<link type="text/css" rel="stylesheet" href="css/white.css" />
+<script type="text/javascript" src="js/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$("div.options").click(function () {
+	$("div.menu").slideToggle("slow");
+	
+});
+	$("div.date-options").click(function () {
+	$("div.date-menu").slideToggle("slow");
+	
+});
+	$("div.time-options").click(function () {
+	$("div.time-menu").slideToggle("slow");
+	
+});
+	$("div.repeat-options").click(function () {
+	$("div.repeat-menu").slideToggle("slow");
+	
+});
+
+});
+</script>
+</head>
+
+<body>
+<div class="main">
+<div class="main-container">
+<div class="settings"><a href="#">إعدادات</a></div>
+<div class="tasks-icon">قائمة المهام</div>
+<div class="validation-area">
+<div class="close "><a href="#"><img src="images/close.png" width="20" height="17" alt="close" /></a></div>
+<span class="validation-txt">Validation messages area</span>
+</div>
+<div class="add-container">
+<span class="add-title">
+أضافة مهمة
+<div class="close add-close"><a href="#"><img src="images/close.png" width="20" height="17" alt="close" /></a></div>
+</span>
+<form action="" method="get">
+<div class="field-container">
+<label class="field-label">إسم المهمة</label>
+<input name="" type="text" class="txt-input" />
+</div>
+<div class="field-container">
+<label class="field-label">درجة الأهمية</label>
+
+    
+    <select class="select-menu" name="">
+            <option>عادى</option>
+            <option>هام</option>
+            <option>هام جدا</option>
+          </select>
+    
+</div>
+<div class="field-container">
+<label class="field-label">اعادة التذكير</label>
+
+    <select class="select-menu" name="">
+            <option>يومى</option>
+            <option>اسبوعى</option>
+            <option>شهرى</option>
+            <option>سنوى</option>
+          </select>
+    
+</div>
+<div class="field-container">
+<label class="field-label">تاريخ المهمة</label>
+<div class="date-options">
+    <span class="date-options-text">اختار</span>
+    <div class="date-menu">
+    <ul>
+    <li><a href="#">AM</a></li>
+    <li class="last-option"><a href="#">PM</a></li>
+    </ul>
+    </div>
+    </div>
+    
+    <input name="" type="text" class="small-input" />
+    <label class="field-label time-label">ساعة</label>
+    <input name="" type="text" class="small-input" />
+    <label class="field-label time-label">دقيقة</label>
+</div>
+<div class="field-container">
+<label class="field-label">إدراج تعليق</label>
+<textarea name="" cols="" rows="" class="comment"></textarea>
+</div>
+<div class="field-container">
+<label class="field-label">إضافة وقت تذكير</label>
+<div class="time-options">
+    <span class="time-options-text">اختار</span>
+    <div class="time-menu">
+    <ul>
+    <li><a href="#">AM</a></li>
+    <li class="last-option"><a href="#">PM</a></li>
+    </ul>
+    </div>
+    </div>
+    
+    <input name="" type="text" class="small-input" />
+    <label class="field-label time-label">ساعة</label>
+    <input name="" type="text" class="small-input" />
+    <label class="field-label time-label">دقيقة</label>
+</div>
+<input name="" type="submit"  value="إضافة" class="add-btn"/>
+</form>
+</div>
+
+
+
+
+
+	
+</div>
+</div>
+</div>
+</body>
+</html>
