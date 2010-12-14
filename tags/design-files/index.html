@@ -1,196 +1,195 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<!--defult style-->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<!--white style-->
-<link type="text/css" rel="stylesheet" href="css/white.css" />
-<script type="text/javascript" src="js/jquery-latest.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Untitled Document</title>
+        <!--defult style-->
+        <link type="text/css" rel="stylesheet" href="css/style.css" />
+        <!--white style-->
+        <link type="text/css" rel="stylesheet" href="css/white.css" />
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
 	
-	$(".toggle_container").hide();
+                $(".toggle_container").hide();
 
-	$("h2.trigger").toggle(function(){
-		$(this).addClass("active"); 
-		}, function () {
-		$(this).removeClass("active");
-	});
+                $("h2.trigger").toggle(function(){
+                    $(this).addClass("active");
+                }, function () {
+                    $(this).removeClass("active");
+                });
 	
-	$("h2.trigger").click(function(){
-		$(this).next(".toggle_container").slideToggle("slow,");
-	});
+                $("h2.trigger").click(function(){
+                    $(this).next(".toggle_container").slideToggle("slow,");
+                });
 	
-	$("div.options").click(function () {
-	$("div.menu").slideToggle("slow");
-});
+                $("div.options").click(function () {
+                    $("div.menu").slideToggle("slow");
+                });
 
-});
-</script>
-</head>
+            });
+        </script>
+    </head>
 
-<body>
-<div class="main">
-<div class="main-container">
-<div class="settings"><a href="#">إعدادات</a></div>
-<div class="tasks-icon">قائمة المهام</div>
-<div class="tools-container">
-<p id="text">
- <span class="hotspot" onmouseover="tooltip.show('<strong>اضافة</strong>');" onmouseout="tooltip.hide();"><img src="images/add.png" width="16" height="16" /></span>
- <span class="hotspot" onmouseover="tooltip.show('<strong>حذف</strong>');" onmouseout="tooltip.hide();"><img src="images/delete.png" width="16" height="16" /></span>
- 
-  <span class="hotspot" onmouseover="tooltip.show('<strong>تزامن</strong>');" onmouseout="tooltip.hide();"><img src="images/sync.png" width="19" height="18" /></span> </p>
-</div>
-<div class="validation-area">
-<div class="close"><a href="#"><img src="images/close.png" width="20" height="17" alt="close" /></a></div>
-<span class="validation-txt">Validation messages area</span>
-</div>
+    <body>
+        <div class="main">
+            <div class="main-container">
+                <div class="settings"><a href="#">إعدادات</a></div>
+                <div class="tasks-icon">قائمة المهام</div>
+                <div class="tools-container">
+                    <p id="text">
+                        <span class="hotspot" onmouseover="tooltip.show('<strong>اضافة</strong>');" onmouseout="tooltip.hide();"><img src="images/add.png" width="16" height="16" /></span>
+                        <span class="hotspot" onmouseover="tooltip.show('<strong>حذف</strong>');" onmouseout="tooltip.hide();"><img src="images/delete.png" width="16" height="16" /></span>
 
-
+                        <span class="hotspot" onmouseover="tooltip.show('<strong>تزامن</strong>');" onmouseout="tooltip.hide();"><img src="images/sync.png" width="19" height="18" /></span> </p>
+                </div>
+                <div class="validation-area">
+                    <div class="close"><a href="#"><img src="images/close.png" width="20" height="17" alt="close" /></a></div>
+                    <span class="validation-txt">Validation messages area</span>
+                </div>
 
 
-<div class="tasks-container">
 
-	<h2 class="trigger">
-    <a href="#" class="trigger-link">اليوم</a>
-    <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
-    </h2>
-	<div class="toggle_container">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl">
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr class="unread-row">
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr class="active-row">
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-</table>
-	</div>
-	<h2 class="trigger">
-    <a href="#" class="trigger-link">غدا</a>
-    <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
-    </h2>
-	<div class="toggle_container">
-    <div class="no-tasks">
-    لا يوجد مهام لهاذا اليوم
-    </div>
-	</div>
-	
-	<h2 class="trigger">
-    <a href="#" class="trigger-link">مهام سابقة</a>
-    <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
-    </h2>
-	<div class="toggle_container">
-		
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl">
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr class="unread-row">
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr class="active-row">
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-  <tr>
-    <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
-    <td width="100" height="26">الذهاب الى النادى</td>
-    <td width="80" height="26" align="center">5.30 PM</td>
-    <td width="185" height="26">التركيز على الفصل الثانى</td>
-    <td width="100" height="26">14/12/2010</td>
-    <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
-  </tr>
-</table>
-<div class="bottom-area">
-    <span class="bottom-label">إظهار</span>
-    <div class="options">
-    <span class="options-text">اختار</span>
-    <div class="menu">
-    <ul>
-    <li><a href="#">الكل</a></li>
-    <li><a href="#">المهام المكتملة</a></li>
-    <li class="last-option"><a href="#">المهام الغير مكتملة</a></li>
-    </ul>
-    </div>
-    </div>
-    
-    <input name="" type="submit" value="عرض" class="btn"/>
-    </div>
-	</div>
-	</div>
-	
-</div>
-</div>
-</div>
-<script type="text/javascript" language="javascript" src="js/script.js"></script>
-</body>
+                <div class="tasks-container">
+
+                    <h2 class="trigger">
+                        <a href="#" class="trigger-link">اليوم</a>
+                        <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
+                    </h2>
+                    <div class="toggle_container">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl">
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr class="unread-row">
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr class="active-row">
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h2 class="trigger">
+                        <a href="#" class="trigger-link">غدا</a>
+                        <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
+                    </h2>
+                    <div class="toggle_container">
+                        <div class="no-tasks">
+                            لا يوجد مهام لهاذا اليوم
+                        </div>
+                    </div>
+
+                    <h2 class="trigger">
+                        <a href="#" class="trigger-link">مهام سابقة</a>
+                        <a href="#" class="trigger-icon"><img src="images/add.png" width="16" height="16" /></a>
+                    </h2>
+                    <div class="toggle_container">
+
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl">
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr class="unread-row">
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr class="active-row">
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                            <tr>
+                                <td width="25" height="26" align="center"><input name="" type="checkbox" value="" /></td>
+                                <td width="100" height="26">الذهاب الى النادى</td>
+                                <td width="80" height="26" align="center">5.30 PM</td>
+                                <td width="185" height="26">التركيز على الفصل الثانى</td>
+                                <td width="100" height="26">14/12/2010</td>
+                                <td width="25" height="26" align="center"><a href=""><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>
+                            </tr>
+                        </table>
+                        <div class="bottom-area">
+                            <span class="bottom-label">إظهار</span>
+                            <div class="options">
+                                <span class="options-text">اختار</span>
+                                <div class="menu">
+                                    <ul>
+                                        <li><a href="#">الكل</a></li>
+                                        <li><a href="#">المهام المكتملة</a></li>
+                                        <li class="last-option"><a href="#">المهام الغير مكتملة</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <input name="" type="submit" value="عرض" class="btn"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript" language="javascript" src="js/script.js"></script>
+    </body>
 </html>
