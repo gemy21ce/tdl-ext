@@ -8,8 +8,10 @@ and open the template in the editor.
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="../controllers/dbConnectors.js"></script>
+        <script type="text/javascript" src="../controllers/connect.js"></script>
         <link type="text/css" rel="stylesheet" href="css/options.css" />
         <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="../controllers/options.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
 
@@ -27,6 +29,23 @@ and open the template in the editor.
         <div class="main-container">
             <div class="center-container">
                 <span class="titles-container">صفحة الإعدادات</span>
+                <!--added to set synch-->
+                <div id="welcomeScreen"></div>
+                <div class="popup" id="loginpopup" style="display: none;">
+                    <div class="gmail-icon"></div>
+                    <span class="login-title">تسجيل الدخول</span>
+                    <div class="login-container">
+                        <label class="login-label">البريد الالكترونى</label>
+                        <input type="text" id="username" name="" class="login-input">
+                        <label class="login-label">كلمة المرور</label>
+                        <input type="password" id="password" name="" class="login-input">
+                        <input type="button" id="loginbutton" name="" class="login-btn" value="login">
+                    </div>
+                </div>
+                <div style="display: none;" id="loading">
+                    <img src="images/ajax-loader.gif" alt="loading" />
+                </div>
+                <!--end synch-->
                 <div class="field-container">
                     <label class="field-label">إسم المهمة</label>
                     <div class="options">
@@ -86,5 +105,6 @@ and open the template in the editor.
                 </span>
             </div>
         </div>
+        <div id="textContainer" style="display:none;">لم يتم تسجيل البيانات الخاصة بك علي حساب جووجل  <a style="cursor: pointer;" onclick="OPTIONS.showLogin();">اضغط هنا لتسجيل الدخول</a></div>
     </body>
 </html>
