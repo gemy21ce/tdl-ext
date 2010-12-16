@@ -208,9 +208,6 @@ var POPUP={
 }
 $(function(){
 
-    //default popup page
-    //    $(".toggle_container").hide();
-
     $("h2.trigger").click(function(){
         $("h2.trigger").removeClass('active');
         $(this).addClass("active");
@@ -227,10 +224,6 @@ $(function(){
     });
     //--
     //add page
-    $("div.options").click(function () {
-        $("div.menu").slideToggle("slow");
-
-    });
     $("div.date-options").click(function () {
         $("div.date-menu").slideToggle("slow");
 
