@@ -29,11 +29,13 @@ var OPTIONS={
         }
         $("#loginpopup").hide();
         $("#loading").show();
-        connect.checkCredentials(username, password, function(){
+        proxy.checkCridentials(username, password, function(){
             var usercred={
                 username:username,password:password
             }
             window.localStorage.user=JSON.stringify(usercred);
+            $("#loading").hide();
+            $("#welcomeScreen").show();
             OPTIONS.loginscreen();
         }, function(){
             OPTIONS.redCredInput('username', 'password');
