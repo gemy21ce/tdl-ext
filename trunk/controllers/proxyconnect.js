@@ -3,20 +3,21 @@
  * and open the template in the editor.
  */
 var connectURL={
-    checkCred:'',
-    postEvent:''
+    baseURL:'http://localhost:8084/cp',
+    checkCred:'/proxy/checkcred.htm',
+    postEvent:'proxy/createtask.htm'
 }
-var connect={
+var proxy={
     checkCridentials:function(username,password,successhandler,failerhandler){
         $.ajax({
-            url:connectURL.checkCred,
+            url:connectURL.baseURL+connectURL.checkCred,
             type:'POST',
             data:{
-                usename:username,
+                username:username,
                 password:password
             },
-            success:function(user){
-                if(user==username){
+            success:function(resp){
+                if(resp=='VALIDUSER'){
                     successhandler();
                 }else{
                     failerhandler();
@@ -24,11 +25,19 @@ var connect={
             }
         })
     },
-    saveTask:function(eventTitle,eventContent,startDate,endDate,freq,until,handler){
+    saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
         $.ajax({
             url:connectURL.postEvent,
             type:'POST',
-            data:{title:eventTitle,content:eventContent,dtstart:startDate,dtend:endDate,freq:freq,until:until},
+            data:{
+                title:eventTitle,
+                content:eventContent,
+                dtstart:startDate,
+                dtend:endDate,
+                freq:freq,
+                byday:byday,
+                until:until
+            },
             success:function(res){
                 handler(res);
             }
