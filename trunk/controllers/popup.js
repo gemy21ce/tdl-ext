@@ -126,17 +126,8 @@ var POPUP={
         $('.'+className).addClass('required-field');
         setTimeout("$('.'+'"+className+"').removeClass('required-field');",timeInMillisecund);
     },
-    selectedRows:function(){
-        var checked=[];
-        $(':checkbox').each(function(){
-            if(this.checked){
-                checked.push(this.value);
-            }
-        });
-        return checked;
-    },
     deleteRows:function(){
-        var rows=POPUP.selectedRows();
+        var rows=util.selectedRows();
         if(rows.length ==0){
             POPUP.showError('??? ?? ????? ?????? ?????? ?????');
             return;

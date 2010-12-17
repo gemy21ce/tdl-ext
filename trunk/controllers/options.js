@@ -5,6 +5,7 @@
 var OPTIONS={
     init:function(){
         OPTIONS.loginscreen();
+        OPTIONS.markSelectedSynchOptions();
     },
     showLogin:function(){
         $('#loginpopup').show();
@@ -31,7 +32,8 @@ var OPTIONS={
         $("#loading").show();
         proxy.checkCridentials(username, password, function(){
             var usercred={
-                username:username,password:password
+                username:username,
+                password:password
             }
             window.localStorage.user=JSON.stringify(usercred);
             $("#loading").hide();
@@ -45,12 +47,45 @@ var OPTIONS={
     redCredInput:function(el1,el2){
         $("#"+el1).addClass('badCred');
         $("#"+el2).addClass('badCred');
+    },
+    saveSycnhSettings:function(settings){
+        if(!settings || settings.length==0){
+            settings=['all'];
+        }
+        window.localStorage.synchsettings=JSON.stringify({
+            settings:settings
+        });
+    },
+    markSelectedSynchOptions:function(){
+        if(!window.localStorage.synchsettings){
+            OPTIONS.saveSycnhSettings();
+        }
+        var synch=JSON.parse(window.localStorage.synchsettings);
+        for(i in synch.settings){
+            $("#synch"+synch.settings[i]).attr('checked',true);
+        }
     }
 }
 $(function(){
     OPTIONS.init();
     $('#loginbutton').click(function(){
         OPTIONS.login();
-    })
-})
+    });
+    $("#sync").click(function(){
+        OPTIONS.saveSycnhSettings(util.selectedRows());
+    });
+    $("#synchall").click(function(){
+        if(this.checked){
+            $(":checkbox").each(function(){
+                this.checked=false;
+            });
+            this.checked=true;
+        }
+    });
+    $("#synchvimp,#synchimp,#synchreg").click(function(){
+        if(this.checked){
+            $("#synchall").attr('checked',false);
+        }
+    });
+});
 

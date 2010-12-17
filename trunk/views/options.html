@@ -11,6 +11,7 @@ and open the template in the editor.
         <script type="text/javascript" src="../controllers/proxyconnect.js"></script>
         <link type="text/css" rel="stylesheet" href="css/options.css" />
         <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="../controllers/util.js"></script>
         <script type="text/javascript" src="../controllers/options.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
@@ -61,22 +62,20 @@ and open the template in the editor.
                 </div>
                 <div class="field-container">
                     <label class="field-label">التزامن مع جوجل</label>
-                    <form id="form1" name="form1" method="post" action="">
-                        <label class="field-container-label">
-                            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0" />
-                            الكل</label>
-                        <label class="field-container-label">
-                            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1" />
-                            هام جدا</label>
-                        <label class="field-container-label">
-                            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_2" />
-                            هام</label>
-                        <label class="field-container-label">
-                            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_3" />
-                            متوسط الأهمية</label>
+                    <label class="field-container-label">
+                        <input type="checkbox" name="CheckboxGroup1" value="all" id="synchall" />
+                        الكل</label>
+                    <label class="field-container-label">
+                        <input type="checkbox" name="CheckboxGroup1" value="vimp" id="synchvimp" />
+                        هام جدا</label>
+                    <label class="field-container-label">
+                        <input type="checkbox" name="CheckboxGroup1" value="imp" id="synchimp" />
+                        هام</label>
+                    <label class="field-container-label">
+                        <input type="checkbox" name="CheckboxGroup1" value="reg" id="synchreg" />
+                        متوسط الأهمية</label>
 
-                        <input name="" type="submit" value="" class="sync-button"/>
-                    </form>
+                    <input name="" type="submit" id="sync" value="" class="sync-button"/>
                 </div>
                 <span class="titles-container second-title">إختار قالب لقائمة المهام </span>
                 <div class="options-area">
@@ -90,19 +89,19 @@ and open the template in the editor.
                             </tr>
                             <tr class="send-tr">
                                 <td class="5"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="news.setTheme(0)" class="signup Mbps" ><strong>اضف</strong></a></td>
+                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
                                 <td class="6"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="news.setTheme(1)" class="signup Mbps" ><strong>اضف</strong></a></td>
+                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
 
                                 <td class=" highlight 8"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="news.setTheme(3)" class="signup Mbps" ><strong>اضف</strong></a></td>
+                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <span class="titles-container second-title save-area">
-                    <input name="" type="submit" class="save-button" value="" />
-                </span>
+<!--                                <span class="titles-container second-title save-area">
+                                    <input name="" type="submit" class="save-button" value="" />
+                                </span>-->
             </div>
         </div>
         <div id="textContainer" style="display:none;">لم يتم تسجيل البيانات الخاصة بك علي حساب جووجل  <a style="cursor: pointer;" onclick="OPTIONS.showLogin();">اضغط هنا لتسجيل الدخول</a></div>
