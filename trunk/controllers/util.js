@@ -43,6 +43,33 @@ var util={
             }
         });
         return checked;
+    },
+    reverseString:function(str){
+        var i=str.length;
+        i=i-1;
+        var revstr=""
+        for (var x = i; x >=0; x--)
+        {
+            revstr+=str.charAt(x);
+        }
+        return revstr;
+    },
+    replaceAll:function(str,match,replace){
+        var i=str.length;
+        i=i-1;
+        var revstr=""
+        for (var x = i; x >=0; x--)
+        {
+            revstr+=(str.charAt(x)==match?replace:str.charAt(x));
+        }
+        return revstr;
+    },
+    icalrfc2445Date:function(date,sep){
+        var dates=date.split(sep);
+        var icaldate="";
+        for(var i=dates.length;i>0;i--){
+            icaldate+=dates[i-1];
+        }
+        return icaldate;
     }
 }
-

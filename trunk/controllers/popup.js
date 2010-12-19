@@ -74,6 +74,10 @@ var POPUP={
         tododb.save(task, function(){
             POPUP.backToMain();
             POPUP.init();
+            var sync=JSON.parse(window.localStorage.synchsettings);
+            if(sync.settings == 'all' || sybc.settings == task.priority){
+                chrome.extension.getBackgroundPage().proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until, function(){});
+            }
         });
     },
     validate:function(){
@@ -85,7 +89,9 @@ var POPUP={
             enddate:'',
             reminder:$('#reminder').attr('value'),
             priority:$('#priority').attr('value'),
-            expired:false
+            expired:false,
+            reminderType:$("#reminderType").attr('value'),
+            until:$("#until").attr('value')
         }
         //        alert(util.now()>task.time);return;
         if(task.title == '' || task.startdate == '' || task.time == '' ){
@@ -101,8 +107,8 @@ var POPUP={
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        var notification=$('#reminderType').attr('value');
-        switch(notification){
+//        =$('#reminderType').attr('value');
+        switch(task.reminderType){
             case '':{
                 POPUP.addNewTask(task);
                 break;
@@ -229,9 +235,12 @@ $(function(){
     });
     //--
     //date time picker
-    $("#startdate").datepicker({
+    $("#startdate,#until").datepicker({
         dateFormat:'dd/mm/yy'
     });
+//    $("#until").datepicker({
+//        dateFormat:'dd/mm/yy'
+//    });
     $("#time,#reminder").timepicker({
         ampm:true
     });
