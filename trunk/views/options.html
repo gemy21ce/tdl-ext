@@ -27,12 +27,14 @@ and open the template in the editor.
     </head>
 
     <body>
+    <div class="popup-overlay" style="display:none;"></div>
         <div class="main-container">
             <div class="center-container">
                 <span class="titles-container">صفحة الإعدادات</span>
                 <!--added to set synch-->
-                <div id="welcomeScreen"></div>
+                <div id="welcomeScreen" class="popup-link"></div>
                 <div class="popup" id="loginpopup" style="display: none;">
+                <a style="" class="close-icon"></a>
                     <div class="gmail-icon"></div>
                     <span class="login-title">تسجيل الدخول</span>
                     <div class="login-container">
@@ -40,10 +42,10 @@ and open the template in the editor.
                         <input type="text" id="username" name="" class="login-input">
                         <label class="login-label">كلمة المرور</label>
                         <input type="password" id="password" name="" class="login-input">
-                        <input type="button" id="loginbutton" name="" class="login-btn" value="login">
+                        <input type="button" id="loginbutton" name="" class="login-btn" value="دخول">
                     </div>
                 </div>
-                <div style="display: none;" id="loading">
+                <div style="display: none;" id="loading" class="loading">
                     <img src="images/ajax-loader.gif" alt="loading" />
                 </div>
                 <!--end synch-->
@@ -104,6 +106,7 @@ and open the template in the editor.
                                 </span>-->
             </div>
         </div>
-        <div id="textContainer" style="display:none;">لم يتم تسجيل البيانات الخاصة بك علي حساب جووجل  <a style="cursor: pointer;" onclick="OPTIONS.showLogin();">اضغط هنا لتسجيل الدخول</a></div>
+        <div id="textContainer" style="display:none;" class="popup-link">لم يتم تسجيل البيانات الخاصة بك علي حساب جووجل  <a style="cursor: pointer;" onClick="OPTIONS.showLogin();">اضغط هنا لتسجيل الدخول</a></div>
+        
     </body>
 </html>

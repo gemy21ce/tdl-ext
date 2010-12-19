@@ -8,6 +8,7 @@ var OPTIONS={
         OPTIONS.markSelectedSynchOptions();
     },
     showLogin:function(){
+		 $('.popup-overlay').show();
         $('#loginpopup').show();
         $("#welcomeScreen").hide();
         $("#loading").hide();
@@ -28,6 +29,7 @@ var OPTIONS={
             OPTIONS.redCredInput('username', 'password');
             return;
         }
+		$(".popup-overlay").hide();
         $("#loginpopup").hide();
         $("#loading").show();
         proxy.checkCridentials(username, password, function(){
