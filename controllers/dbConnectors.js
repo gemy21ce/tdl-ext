@@ -8,10 +8,19 @@ var tododb={
         this.db.transaction(function(tx) {
             tx.executeSql("create table if not exists " +
                 "tasklist(id integer primary key asc, title string, content string,"+
-                "startdate string,time string, enddate string, reminder string, priority string, expired boolean)",
+                "startdate string,time string, enddate string, reminder string, priority string, expired boolean);",
                 [],
                 function() {
-                    console.log("siucc");
+                    console.log("tasklist created");
+                }
+                );
+        });
+        this.db.transaction(function(tx) {
+            tx.executeSql("create table if not exists " +
+                "reminder(id integer primary key asc, taskid string, date string,time string);",
+                [],
+                function() {
+                    console.log("reminder created");
                 }
                 );
         });
@@ -24,14 +33,23 @@ var tododb={
                 tododb.onError);
         });
     },
-    drop:function(){
+    drop:function(table){
         this.db.transaction(function(tx) {
-            tx.executeSql("drop table tasklist;",
+            tx.executeSql("drop table "+table+";",
                 [],
                 function() {
                     console.log("dropped");
                 }
                 );
+        });
+    },
+    addreminder:function(task,start,time,until,type,handler){
+        //to be checked later
+        this.db.transaction(function(tx) {
+            tx.executeSql("insert into reminder (taskid, date,time) values (?,?,?);",
+                [task,start,time],
+                handler,
+                tododb.onError);
         });
     },
     update:function(task,handler){

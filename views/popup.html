@@ -34,7 +34,7 @@ and open the template in the editor.
                         <p id="text">
                             <span id="addbutton" class="hotspot" onMouseOver="tooltip.show('<strong>اضافة</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/add.png" width="16" height="16" /></span>
                             <span id="deletebutton" class="hotspot" onMouseOver="tooltip.show('<strong>حذف</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/delete.png" width="16" height="16" /></span>
-                            <span class="hotspot" onMouseOver="tooltip.show('<strong>تزامن</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>
+<!--                            <span class="hotspot" onMouseOver="tooltip.show('<strong>تزامن</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>-->
                     </div>
                     <div class="tasks-container">
                         <h2 class="trigger active" id="todaytasks">
@@ -181,11 +181,13 @@ and open the template in the editor.
                                 <option value="monthly">شهري</option>
                                 <option value="annual">سنوي</option>
                             </select>
+                            <label class="field-label2">إلي</label>
+                            <input name="" id="until" type="text" class="txt-input" />
                         </div>
                         <div class="field-container">
                             <label class="required field-label ">وقت وتاريخ المهمة</label>
                             <input name="" id="startdate" type="text" class="txt-input" />
-                            <input name="" id="time" type="text" class="txt-input" />
+                            <input name="" id="time" type="text" class="txt-input" style="margin-right: 50px;" />
                         </div>
                         <div class="field-container">
                             <label class="field-label">إدراج تعليق</label>

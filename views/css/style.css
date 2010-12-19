@@ -300,6 +300,20 @@ tr.active-row
     min-width:100px;
     text-align:right;
 }
+.field-label2
+{
+    float:right;
+    height:25px;
+    color:#FFF;
+    font-size:10pt;
+    line-height:25px;
+    min-width:10px;
+    margin-right: 10px;
+    text-align:right;
+}
+.marged{
+    
+}
 .txt-input
 {
     float:right;

@@ -5,7 +5,7 @@
 var connectURL={
     baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
-    postEvent:'proxy/createtask.htm'
+    postEvent:'/proxy/createtask.htm'
 }
 var proxy={
     checkCridentials:function(username,password,successhandler,failerhandler){
@@ -26,10 +26,18 @@ var proxy={
         })
     },
     saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
+        if(! window.localStorage.user){
+            return;
+        }
+        startDate=util.icalrfc2445Date(startDate,"/");
+        endDate=util.icalrfc2445Date(endDate,"/");
+        var user=JSON.parse(window.localStorage.user);
         $.ajax({
-            url:connectURL.postEvent,
+            url:connectURL.baseURL+connectURL.postEvent,
             type:'POST',
             data:{
+                username:user.username,
+                password:user.password,
                 title:eventTitle,
                 content:eventContent,
                 dtstart:startDate,

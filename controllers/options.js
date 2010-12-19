@@ -8,16 +8,22 @@ var OPTIONS={
         OPTIONS.markSelectedSynchOptions();
     },
     showLogin:function(){
-		 $('.popup-overlay').show();
+        $('.popup-overlay').show();
         $('#loginpopup').show();
         $("#welcomeScreen").hide();
         $("#loading").hide();
+    },
+    hideLogin:function(){
+        $(".popup-overlay").hide();
+        $("#loginpopup").hide();
+        $("#welcomeScreen").show();
     },
     loginscreen:function(){
         var user;
         if(window.localStorage.user){
             user=JSON.parse(window.localStorage.user);
-            $("#welcomeScreen").html(user.username+'\u0645\u0631\u062d\u0628\u0627 \u0628\u0643');
+            $("#welcomeScreen").html("<a onclick='OPTIONS.clearSync();' style='' class='close-icon2'></a>"+user.username+
+                '\u0645\u0631\u062d\u0628\u0627 \u0628\u0643');
         }else{
             $("#welcomeScreen").html($('#textContainer').html());
         }
@@ -29,7 +35,7 @@ var OPTIONS={
             OPTIONS.redCredInput('username', 'password');
             return;
         }
-		$(".popup-overlay").hide();
+        $(".popup-overlay").hide();
         $("#loginpopup").hide();
         $("#loading").show();
         proxy.checkCridentials(username, password, function(){
@@ -45,6 +51,10 @@ var OPTIONS={
             OPTIONS.redCredInput('username', 'password');
             OPTIONS.showLogin();
         });
+    },
+    clearSync:function(){
+        delete window.localStorage.user;
+        OPTIONS.loginscreen();
     },
     redCredInput:function(el1,el2){
         $("#"+el1).addClass('badCred');
@@ -73,6 +83,9 @@ $(function(){
     $('#loginbutton').click(function(){
         OPTIONS.login();
     });
+    $("#closeLogin").click(function(){
+        OPTIONS.hideLogin();
+    })
     $("#sync").click(function(){
         OPTIONS.saveSycnhSettings(util.selectedRows());
     });
