@@ -17,6 +17,7 @@ img{border:0;}
     float:left;
     border-radius:5px;
     box-shadow: 10px #0F3;
+	position:relative;
 }
 .settings
 {
@@ -171,7 +172,6 @@ tr.active-row
     margin-top:4px;
     float:left;
     margin-bottom:7px;
-    position:relative;
 }
 .bottom-label{
     float:right;
@@ -188,7 +188,6 @@ tr.active-row
     background:url(../images/options.png) no-repeat;
     margin-right:7px;
     cursor:pointer;
-    position:relative;
 }
 .options-text, .repeat-options-text
 {
@@ -207,8 +206,8 @@ tr.active-row
     position:absolute;
     width:109px;
     background:#dddddd;
-    bottom: 28px;
-    right: 60px;
+    bottom: 43px;
+    right: 66px;
     display:none;
 }
 .menu ul, .repeat-menu ul
