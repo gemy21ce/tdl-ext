@@ -107,7 +107,7 @@ var POPUP={
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-//        =$('#reminderType').attr('value');
+        //        =$('#reminderType').attr('value');
         switch(task.reminderType){
             case '':{
                 POPUP.addNewTask(task);
@@ -116,6 +116,9 @@ var POPUP={
             case 'none':{
                 POPUP.addNewTask(task);
                 break;
+            }
+            default:{
+                POPUP.addNewTask(task);
             }
         }
         
@@ -238,9 +241,9 @@ $(function(){
     $("#startdate,#until").datepicker({
         dateFormat:'dd/mm/yy'
     });
-//    $("#until").datepicker({
-//        dateFormat:'dd/mm/yy'
-//    });
+    //    $("#until").datepicker({
+    //        dateFormat:'dd/mm/yy'
+    //    });
     $("#time,#reminder").timepicker({
         ampm:true
     });

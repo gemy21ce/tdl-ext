@@ -15,6 +15,12 @@ var util={
         var todaystring=(date.getDate()>9?date.getDate():'0'+date.getDate())+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
         return todaystring;
     },
+    dayInWeek:function(dateString){
+        var weekDays=['Su','Mo','Tu','We','Th','Fr','Sa'];
+        var dateComponents=dateString.split("/");
+        var date=new Date(dateComponents[2],(parseInt(dateComponents[1])-1),dateComponents[0]);
+        return(weekDays[date.getDay()]);
+    },
     tomorrow:function(){
         var date=new Date();
         var todaystring=((date.getDate()+1)>9?(date.getDate()+1):'0'+(date.getDate()+1))+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
