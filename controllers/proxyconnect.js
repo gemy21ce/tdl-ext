@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 var connectURL={
-    baseURL:'http://localhost:8084/cp',
+    baseURL:'http://192.168.1.155:8080/CalendarProxy',
+//    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm'
 }
@@ -29,8 +30,10 @@ var proxy={
         if(! window.localStorage.user){
             return;
         }
+        byday=util.dayInWeek(startDate);
         startDate=util.icalrfc2445Date(startDate,"/");
         endDate=util.icalrfc2445Date(endDate,"/");
+        until=util.icalrfc2445Date(until, "/");
         var user=JSON.parse(window.localStorage.user);
         $.ajax({
             url:connectURL.baseURL+connectURL.postEvent,
