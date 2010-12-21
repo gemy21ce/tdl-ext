@@ -199,6 +199,29 @@ var tododb={
     },
     onError: function(tx,error) {
         console.log("Error occurred: ", error.message);
+    },
+    todaysReminders:function(handler){
+        var todaystring=util.today();
+        var matchingTasks=[];
+        this.db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM reminder WHERE date = ? ;",
+                [todaystring],
+                function(tx, results) {
+                    for (i = 0; i < results.rows.length; i++) {
+                        matchingTasks.push(util.clone(results.rows.item(i)));
+                    }
+                    handler(matchingTasks);
+                },
+                tododb.onError);
+        });
+    },
+    deleteReminder:function(id,handler){
+        this.db.transaction(function(tx) {
+            tx.executeSql("DELETE FROM reminder WHERE id=?;",
+                [id],
+                handler,
+                tododb.onError);
+        });
     }
 }
 tododb.setup();

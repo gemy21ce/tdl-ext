@@ -2,7 +2,7 @@
   "name": "To Do List",
   "description": "To Do List",
   "version": "1.0",
-  "permissions": ["tabs", "http://*/*","https://*/*"],
+  "permissions": ["tabs","notifications", "http://*/*","https://*/*"],
   "background_page": "views/background.html",
   "options_page": "views/options.html",
   "icons": {"16":"views/icons/icon16.png","48":"views/icons/icon48.png","128":"views/icons/icon128.png"},
