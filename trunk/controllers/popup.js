@@ -50,6 +50,12 @@ var POPUP={
                 });
                 break;
             }
+            case 'undatedtasks':{
+                tododb.getNodatedTasks(function(list){
+                    POPUP.populateInRows(list, 'undatedtasksTable');
+                });
+                break;
+            }
         }
     },
     OpenOptionPage:function(){
@@ -94,16 +100,16 @@ var POPUP={
             until:$("#until").attr('value')
         }
         //        alert(util.now()>task.time);return;
-        if(task.title == '' || task.startdate == '' || task.time == '' ){
+        if(task.title == '' ){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
         }
-        if(task.startdate < util.today()){
+        if((task.startdate != '')&&(task.startdate < util.today())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        if(task.startdate == util.today() && task.time < util.now()){
+        if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
@@ -115,6 +121,54 @@ var POPUP={
             }
             case 'none':{
                 POPUP.addNewTask(task);
+                break;
+            }
+            case 'daily':{
+                POPUP.addNewTask(task);
+                tododb.lastAdd(function(id){
+                    var untilDate=util.Date(task.until);
+                    var nextDay=util.Date(task.startdate);
+                    while(nextDay.getTime() != untilDate.getTime()){
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        nextDay=util.nextDay(nextDay);
+                    }
+                });
+                break;
+            }
+            case 'weekly':{
+                POPUP.addNewTask(task);
+                tododb.lastAdd(function(id){
+                    var untilDate=util.Date(task.until);
+                    var nextDay=util.Date(task.startdate);
+                    while(nextDay.getTime() != untilDate.getTime()){
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        nextDay=util.nextWeek(nextDay);
+                    }
+                });
+                break;
+            }
+            case 'monthly':{
+                POPUP.addNewTask(task);
+                tododb.lastAdd(function(id){
+                    var untilDate=util.Date(task.until);
+                    var nextDay=util.Date(task.startdate);
+                    while(nextDay.getTime() != untilDate.getTime()){
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        nextDay=util.nextMonth(nextDay);
+                    }
+                });
+                break;
+            }
+            case 'yearly':{
+                POPUP.addNewTask(task);
+                tododb.lastAdd(function(id){
+                    var untilDate=util.Date(task.until);
+                    var nextDay=util.Date(task.startdate);
+                    while(nextDay.getTime() != untilDate.getTime()){
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        nextDay=util.nextYear(nextDay);
+                    }
+                });
                 break;
             }
             default:{
@@ -177,16 +231,16 @@ var POPUP={
             priority:$('#priority').attr('value'),
             expired:$('#completedTask').attr('checked')
         }
-        if(task.title == '' || task.startdate == '' || task.time == '' ){
+        if(task.title == ''){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
         }
-        if(task.startdate < util.today()){
+        if((task.startdate != '')&&(task.startdate < util.today())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        if(task.startdate == util.today() && task.time < util.now()){
+        if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }

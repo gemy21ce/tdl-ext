@@ -149,6 +149,19 @@ and open the template in the editor.
                                 <!--                                <input name="" onClick="POPUP.getSelectedRows();" type="submit" value="" class="btn"/>-->
                             </div>
                         </div>
+                        <h2 class="trigger" id="undatedtasks">
+                            <a class="trigger-link">مهام غير مؤرخة</a>
+                            <a class="trigger-icon"><img alt="" src="images/add.png" width="16" height="16" /></a>
+                        </h2>
+                        <div class="toggle_container">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl" id="undatedtasksTable">
+                                <tr>
+                                    <td width="100%">
+                                        <img src="images/ajax-loader.gif" alt="loading" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="add-container" style="display: none;" id="add-container">
@@ -179,13 +192,13 @@ and open the template in the editor.
                                 <option value="daily">يومي</option>
                                 <option value="weekly">اسبوعي</option>
                                 <option value="monthly">شهري</option>
-                                <option value="annual">سنوي</option>
+                                <option value="yearly">سنوي</option>
                             </select>
                             <label class="field-label2">إلي</label>
                             <input name="" id="until" type="text" class="txt-input" />
                         </div>
                         <div class="field-container">
-                            <label class="required field-label ">وقت وتاريخ المهمة</label>
+                            <label class="field-label ">وقت وتاريخ المهمة</label>
                             <input name="" id="startdate" type="text" class="txt-input" />
                             <input name="" id="time" type="text" class="txt-input" style="margin-right: 50px;" />
                         </div>

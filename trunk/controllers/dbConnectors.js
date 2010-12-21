@@ -31,6 +31,20 @@ var tododb={
                 [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired],
                 handler,
                 tododb.onError);
+        });//
+    },
+    lastAdd:function(handler){
+        var matchingTasks=[];
+        this.db.transaction(function(tx) {
+            tx.executeSql("SELECT max (id) as id FROM  tasklist ;",
+                [],
+                function(tx, results) {
+                    for (i = 0; i < results.rows.length; i++) {
+                        matchingTasks.push(util.clone(results.rows.item(i)));
+                    }
+                    handler(matchingTasks[0]);
+                },
+                tododb.onError);
         });
     },
     drop:function(table){
@@ -43,11 +57,11 @@ var tododb={
                 );
         });
     },
-    addreminder:function(task,start,time,until,type,handler){
+    addreminder:function(task,date,time,handler){
         //to be checked later
         this.db.transaction(function(tx) {
             tx.executeSql("insert into reminder (taskid, date,time) values (?,?,?);",
-                [task,start,time],
+                [task,date,time],
                 handler,
                 tododb.onError);
         });
@@ -63,6 +77,12 @@ var tododb={
     deleteRec:function(taskid,handler){
         this.db.transaction(function(tx) {
             tx.executeSql("DELETE FROM tasklist WHERE id=?;",
+                [taskid],
+                handler,
+                tododb.onError);
+        });
+        this.db.transaction(function(tx) {
+            tx.executeSql("DELETE FROM reminder WHERE taskid=?;",
                 [taskid],
                 handler,
                 tododb.onError);
@@ -100,7 +120,7 @@ var tododb={
         var date=util.today();
         var matchingTasks=[];
         this.db.transaction(function(tx) {
-            tx.executeSql("SELECT * FROM tasklist WHERE startdate < ?;",
+            tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? AND startdate != '';",
                 [date],
                 function(tx, results) {
                     for (i = 0; i < results.rows.length; i++) {
@@ -132,6 +152,20 @@ var tododb={
         this.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate > ?;",
                 [date],
+                function(tx, results) {
+                    for (i = 0; i < results.rows.length; i++) {
+                        matchingTasks.push(util.clone(results.rows.item(i)));
+                    }
+                    handler(matchingTasks);
+                },
+                tododb.onError);
+        });
+    },
+    getNodatedTasks:function(handler){
+        var matchingTasks=[];
+        this.db.transaction(function(tx) {
+            tx.executeSql("SELECT * FROM tasklist WHERE startdate == '' ;",
+                [],
                 function(tx, results) {
                     for (i = 0; i < results.rows.length; i++) {
                         matchingTasks.push(util.clone(results.rows.item(i)));
