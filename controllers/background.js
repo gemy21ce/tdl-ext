@@ -16,7 +16,6 @@ var bg={
     checkTodaysReminders:function(){
         tododb.todaysReminders(function(list){
             bg.todaysReminders=list;
-            alert(JSON.stringify(bg.todaysReminders))
         });
     },
     backgroundAlert:function(){
