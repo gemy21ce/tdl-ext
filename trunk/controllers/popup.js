@@ -132,6 +132,7 @@ var POPUP={
                         tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
                         nextDay=util.nextDay(nextDay);
                     }
+                    bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -144,6 +145,7 @@ var POPUP={
                         tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
                         nextDay=util.nextWeek(nextDay);
                     }
+                    bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -156,6 +158,7 @@ var POPUP={
                         tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
                         nextDay=util.nextMonth(nextDay);
                     }
+                    bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -168,6 +171,7 @@ var POPUP={
                         tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
                         nextDay=util.nextYear(nextDay);
                     }
+                    bg.checkTodaysReminders();
                 });
                 break;
             }

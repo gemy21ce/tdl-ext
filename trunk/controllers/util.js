@@ -53,7 +53,7 @@ var util={
     Date:function(dateString){
         //formate dd/mm/yyyy
         var dates=dateString.split("/");
-        var date =new Date(dates[2],dates[1],dates[0]);
+        var date =new Date(dates[2],dates[1]-1,dates[0]);
         return date;
     },
     now:function(){
