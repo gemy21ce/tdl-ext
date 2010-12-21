@@ -26,6 +26,36 @@ var util={
         var todaystring=((date.getDate()+1)>9?(date.getDate()+1):'0'+(date.getDate()+1))+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
         return todaystring;
     },
+    nextDay:function(date){
+        date.setTime(date.getTime()+86400000);
+        return date;
+    },
+    nextWeek:function(date){
+        date.setTime(date.getTime()+(86400000*7));
+        return date;
+    },
+    nextMonth:function(date){
+        var nextMonth=null;
+        if (date.getMonth() == 11) {
+            nextMonth = new Date(date.getFullYear() + 1, 0, date.getDate());
+        } else {
+            nextMonth = new Date(date.getFullYear(), date.getMonth() + 1, date.getDate());
+        }
+        return nextMonth;
+    },
+    nextYear:function(date){
+        return new Date(date.getFullYear()+1, date.getMonth(), date.getDate());
+    },
+    dateString:function(date){
+        var todaystring=(date.getDate()>9?date.getDate():'0'+date.getDate())+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
+        return todaystring;
+    },
+    Date:function(dateString){
+        //formate dd/mm/yyyy
+        var dates=dateString.split("/");
+        var date =new Date(dates[2],dates[1],dates[0]);
+        return date;
+    },
     now:function(){
         var date=new Date();
         var now=(date.getHours()%12 > 9 ? date.getHours()%12 : '0'+(date.getHours()%12))+':'+(date.getMinutes()>9?date.getMinutes():'0'+(date.getMinutes()))+' '+(date.getHours() > 12?'pm':'am');
