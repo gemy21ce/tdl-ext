@@ -135,7 +135,7 @@ var tododb={
         var date=util.today();
         var matchingTasks=[];
         this.db.transaction(function(tx) {
-            tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? and expired=?;",
+            tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? AND expired=? AND startdate != '';",
                 [date,completed],
                 function(tx, results) {
                     for (i = 0; i < results.rows.length; i++) {
