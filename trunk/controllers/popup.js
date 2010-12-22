@@ -120,6 +120,10 @@ var POPUP={
             }
             case 'none':{
                 POPUP.addNewTask(task);
+                tododb.lastAdd(function(id){
+                    tododb.addreminder(id.id, task.startdate, task.reminder, function(){});
+                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                });
                 break;
             }
             case 'daily':{
@@ -128,10 +132,10 @@ var POPUP={
                     var untilDate=util.Date(task.until);
                     var nextDay=util.Date(task.startdate);
                     while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
                         nextDay=util.nextDay(nextDay);
                     }
-                    bg.checkTodaysReminders();
+                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -141,10 +145,10 @@ var POPUP={
                     var untilDate=util.Date(task.until);
                     var nextDay=util.Date(task.startdate);
                     while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
                         nextDay=util.nextWeek(nextDay);
                     }
-                    bg.checkTodaysReminders();
+                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -154,10 +158,10 @@ var POPUP={
                     var untilDate=util.Date(task.until);
                     var nextDay=util.Date(task.startdate);
                     while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
                         nextDay=util.nextMonth(nextDay);
                     }
-                    bg.checkTodaysReminders();
+                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
                 });
                 break;
             }
@@ -167,10 +171,10 @@ var POPUP={
                     var untilDate=util.Date(task.until);
                     var nextDay=util.Date(task.startdate);
                     while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.time, function(){});
+                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
                         nextDay=util.nextYear(nextDay);
                     }
-                    bg.checkTodaysReminders();
+                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
                 });
                 break;
             }
