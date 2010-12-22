@@ -8,6 +8,7 @@ var POPUP={
         $(".toggle_container").hide();
         POPUP.triggerTasks('todaytasks');
         $("#todays").show();
+        POPUP.openFolds();
     },
     populateInRows:function(list,tableId){
         var out='';
@@ -99,7 +100,6 @@ var POPUP={
             reminderType:$("#reminderType").attr('value'),
             until:$("#until").attr('value')
         }
-        //        alert(util.now()>task.time);return;
         if(task.title == '' ){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
@@ -113,7 +113,6 @@ var POPUP={
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        //        =$('#reminderType').attr('value');
         switch(task.reminderType){
             case '':{
                 POPUP.addNewTask(task);
@@ -196,7 +195,7 @@ var POPUP={
     deleteRows:function(){
         var rows=util.selectedRows();
         if(rows.length ==0){
-            POPUP.showError('??? ?? ????? ?????? ?????? ?????');
+            POPUP.showError('\u0644\u0645 \u062a\u062e\u062a\u0631 \u0623\u064a \u0645\u0647\u0645\u0629 \u0644\u062d\u0630\u0641\u0647\u0627');
             return;
         }
         for(i in rows){
@@ -260,6 +259,36 @@ var POPUP={
                 $(this.parentNode.parentNode).addClass('active-row');
             }else{
                 $(this.parentNode.parentNode).removeClass('active-row');
+            }
+        });
+    },
+    openFolds:function(){
+        tododb.tomorrowLists(function(list){
+            if(list.length > 0){
+                $("#div_tomorrowtasks").show();
+            }else{
+                $("#div_tomorrowtasks").hide();
+            }
+        });
+        tododb.getOldTasks(function(list){
+            if(list.length > 0){
+                $("#div_oldtasks").show();
+            }else{
+                $("#div_oldtasks").hide();
+            }
+        });
+        tododb.getUpcommingTasks(function(list){
+            if(list.length > 0){
+                $("#div_upcommingtasks").show();
+            }else{
+                $("#div_upcommingtasks").hide();
+            }
+        });
+        tododb.getNodatedTasks(function(list){
+            if(list.length > 0){
+                $("#div_undatedtasks").show();
+            }else{
+                $("#div_undatedtasks").hide();
             }
         });
     }
