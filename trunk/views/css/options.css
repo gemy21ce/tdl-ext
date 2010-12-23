@@ -355,3 +355,20 @@ table.radioTable tr.send-tr td {
     top:135px;
     left:350px;
 }
+.sync-btn
+{
+    float:left;
+    width:73px;
+    height:26px;
+    background:url(../images/buttton.png) no-repeat;
+    border:0;
+    margin-left:25px;
+    margin-top:12px;
+    font-size:11pt;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#FFF;
+    cursor: pointer;
+	padding-bottom:7px;
+}
+.sync-btn:hover
+{background:url(../images/buttton-hover.png) no-repeat;}
