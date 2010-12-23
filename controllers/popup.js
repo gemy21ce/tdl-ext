@@ -6,8 +6,8 @@
 var POPUP={
     init:function(){
         $(".toggle_container").hide();
-        POPUP.triggerTasks('todaytasks');
-        $("#todays").show();
+        POPUP.triggerTasks(POPUP.getLastOpenedTab());
+        $('#'+POPUP.getLastOpenedTab()).next(".toggle_container").slideToggle("fast");
         POPUP.openFolds();
     },
     populateInRows:function(list,tableId){
@@ -58,6 +58,7 @@ var POPUP={
                 break;
             }
         }
+        POPUP.setLastOpenedTab(day);
     },
     OpenOptionPage:function(){
         var url=chrome.extension.getURL("/views/options.html")
@@ -295,10 +296,34 @@ var POPUP={
                 $("#div_undatedtasks").hide();
             }
         });
+    },
+    setLastOpenedTab:function(tab){
+        window.localStorage.lastOpened=JSON.stringify({
+            tab:tab
+        });
+    },
+    getLastOpenedTab:function(){
+        if(! window.localStorage.lastOpened){
+            POPUP.setLastOpenedTab('todaytasks');
+        }
+        return (JSON.parse(window.localStorage.lastOpened)).tab;
+    },
+    openTheme:function(){
+        if(! window.localStorage.theme){
+            return '';
+        }
+        var theme=JSON.parse(window.localStorage.theme);
+        if(theme.url ==''){
+            return '';
+        }
+        var out="<link href='";
+            out+=theme.url;
+            out+="' rel='stylesheet' type='text/css' />";
+        return out;
     }
 }
 $(function(){
-
+    $('head').append(POPUP.openTheme());
     $("h2.trigger").click(function(){
         $("h2.trigger").removeClass('active');
         $(this).addClass("active");
@@ -307,7 +332,7 @@ $(function(){
     $("h2.trigger").click(function(){
         POPUP.triggerTasks(this.id);
         $(".toggle_container").hide();
-        $(this).next(".toggle_container").slideToggle("slow,");
+        $(this).next(".toggle_container").slideToggle("slow");
     });
 
     $("div.options").click(function () {

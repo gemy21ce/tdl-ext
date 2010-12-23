@@ -3,9 +3,23 @@
  * and open the template in the editor.
  */
 var OPTIONS={
+    Themes:[{
+        'id':0,
+        'url':'css/brown.css',
+        'thumb':'images/green_bg.jpg'
+    },{
+        'id':1,
+        'url':'css/white.css',
+        'thumb':'images/red_bg.jpg'
+    },{
+        'id':2,
+        'url':'brown.css',
+        'thumb':'images/blue_bg.jpg'
+    }],
     init:function(){
         OPTIONS.loginscreen();
         OPTIONS.markSelectedSynchOptions();
+        $("#fancyRadio").html(OPTIONS.getThemes());
     },
     showLogin:function(){
         $('.popup-overlay').show();
@@ -76,7 +90,37 @@ var OPTIONS={
         for(i in synch.settings){
             $("#synch"+synch.settings[i]).attr('checked',true);
         }
+    },
+    getThemes:function(){
+        if(window.localStorage.theme == null || window.localStorage.theme == undefined){
+            window.localStorage.theme=JSON.stringify(OPTIONS.Themes[0]);
+        }
+        OPTIONS.Theme=JSON.parse(window.localStorage.theme);
+
+        var out='<table class="radioTable RTMbps" border="0" cellpadding="0" cellspacing="0">';
+        var tr1="<tr>";
+        var tr2='<tr class="send-tr">';
+        for(i=0;i< OPTIONS.Themes.length; i++){
+            var count=5+i;
+            if(i==OPTIONS.Theme.id){
+                tr1+='<td class="highlight '+count+'"><img src="'+OPTIONS.Themes[i].thumb+'" alt="" width="150"  /></td>';
+                tr2+='<td class=" highlight '+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>أضف</strong></a></td>';
+            }else{
+                tr1+='<td class="'+count+'"><img src="'+OPTIONS.Themes[i].thumb+'" alt="" width="150"  /></td>';
+                tr2+='<td class="'+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>أضف</strong></a></td>';
+            }
+
+        }
+        tr1+='</tr>';
+        tr2+='</tr>';
+        out+=tr1+tr2;
+        out+="</table>";
+        return out;
+    },
+    setTheme:function(id){
+        window.localStorage.theme=JSON.stringify(OPTIONS.Themes[id]);
     }
+    
 }
 $(function(){
     OPTIONS.init();
@@ -101,6 +145,26 @@ $(function(){
         if(this.checked){
             $("#synchall").attr('checked',false);
         }
+    });
+    $("a.DDR").click(function() { //check for the first selection
+        var $column = $(this).attr('title'); // assign the ID of the column
+        $('table.RTDDR').children().find("td").removeClass("highlight") //forget the last highlighted column
+        $('table.RTDDR').children().find("td."+$column).addClass("highlight"); //highlight the selected column
+        $('table.RTDDR').children().find("td."+$column).find(":radio").attr("checked","checked");
+        return false;
+    });
+    $("a.Mbps").click(function() { //check for the second selection
+        var $column = $(this).attr('title'); // assign the ID of the column
+        $('table.RTMbps').children().find("td").removeClass("highlight"); //forget the last highlighted column
+        $('table.RTMbps').children().find("td."+$column).addClass("highlight"); //highlight the selected column
+        $('table.RTMbps').children().find("td."+$column).find(":radio").attr("checked","checked");
+        return false;
+    });
+    $("button.sendit").click(function() {
+        var $DDR = $('table.RTDDR').children().find("td").find(":checked").val();
+        var $Mbps = $('table.RTMbps').children().find("td").find(":checked").val();
+        alert('You selected '+$DDR+' of RAM, and '+$Mbps+' Bandwidth, for example');
+        return false;
     });
 });
 

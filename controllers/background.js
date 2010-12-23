@@ -5,6 +5,12 @@
 //var todaysReminders=[];
 var bg={
     todaysReminders:[],
+    setup:function(){
+        tododb.setup();
+        if(! window.localStorage.synchsettings){
+            window.localStorage.synchsettings=JSON.stringify({settings:['all']});
+        }
+    },
     fireNotificationAlarm:function(title,msg){
         var notification = webkitNotifications.createNotification(
             'images/bell.jpg',  // icon url - can be relative
@@ -32,6 +38,7 @@ var bg={
     }
 }
 $(function(){
+    bg.setup();
     bg.checkTodaysReminders();
     window.setInterval("bg.checkTodaysReminders()",1000 * 60 * 60 * 24);
     bg.backgroundAlert();
