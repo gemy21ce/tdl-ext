@@ -10,6 +10,7 @@ and open the template in the editor.
         <script type="text/javascript" src="../controllers/dbConnectors.js"></script>
         <script type="text/javascript" src="../controllers/proxyconnect.js"></script>
         <link type="text/css" rel="stylesheet" href="css/options.css" />
+        <link type="text/css" rel="stylesheet" href="css/fancyradio.css" />
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="../controllers/util.js"></script>
         <script type="text/javascript" src="../controllers/options.js"></script>
@@ -27,7 +28,7 @@ and open the template in the editor.
     </head>
 
     <body>
-    <div class="popup-overlay" style="display:none;"></div>
+        <div class="popup-overlay" style="display:none;"></div>
         <div class="main-container">
             <div class="center-container">
                 <span class="titles-container">صفحة الإعدادات</span>
@@ -80,33 +81,10 @@ and open the template in the editor.
                     <input name="" type="submit" id="sync" value="حفظ" class="sync-btn"/>
                 </div>
                 <span class="titles-container second-title">إختار قالب لقائمة المهام </span>
-                <div class="options-area">
-                    <table class="radioTable RTMbps" border="0" cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td class="5"><img src="images/green_bg.jpg" alt="" width="150" height="105"></td>
-                                <td class="6"><img src="images/red_bg.jpg" alt="" width="150"></td>
-
-                                <td class="highlight 8"><img src="images/blue_bg.jpg" alt="" width="150" height="105"></td>
-                            </tr>
-                            <tr class="send-tr">
-                                <td class="5"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
-                                <td class="6"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
-
-                                <td class=" highlight 8"><input class="radioDemo" name="Mbps" value="5Mbps" type="radio">
-                                    <a style="cursor:pointer;" onClick="" class="signup Mbps" ><strong>اضف</strong></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-<!--                                <span class="titles-container second-title save-area">
-                                    <input name="" type="submit" class="save-button" value="" />
-                                </span>-->
+                <div id="fancyRadio"></div>
             </div>
         </div>
         <div id="textContainer" style="display:none;" class="popup-link">لم يتم تسجيل البيانات الخاصة بك علي حساب جووجل  <a style="cursor: pointer; color: #818181" onClick="OPTIONS.showLogin();">اضغط هنا لتسجيل الدخول</a></div>
-        
+
     </body>
 </html>
