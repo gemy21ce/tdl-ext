@@ -1,0 +1,103 @@
+.main-container
+{
+	background:#76583e;
+	-webkit-box-shadow: 0px 0px 8px #818181;
+	}
+.settings a
+{
+	color:#FFF;
+	}
+.tasks-icon
+{
+	color:#FFF;
+	}
+.tools-container
+{
+	background:#f3a03e;
+	}
+.validation-area
+{
+	background:#FFF;
+	
+	}
+.validation-txt{color:#76583e;}
+h2.trigger {
+	background: #f3a03e url(../images/collapse-brown.png) no-repeat 537px 8px;
+	}
+h2.trigger a
+{
+	color:#FFF;
+	}
+h2.active {
+	background-image:url(../images/expand-brown.png);}
+.toggle_container tr {
+ background:#f2f2f2;}
+tr.unread-row
+{
+	background:#FFF;
+	}
+tr.active-row
+{
+	background-color:#f9f1e8;
+	}
+.toggle_container td
+{
+	border-top:1px solid #FFF;
+	color: #644830;
+	}
+.no-tasks
+{color: #644830;}
+.bottom-label{color:#FFF;}
+.bottom-area {
+margin-bottom: 0px;}
+.add-container
+{
+	-webkit-box-shadow: 0px 0px 5px #818181;
+	background:#f3a03e;
+	margin-top:6px;
+	}
+.options, .repeat-options
+{
+	background:url(../images/options.png) no-repeat;
+}
+.add-title
+{
+	color:#FFF;
+	border-bottom:1px solid #FFF;
+	}
+.field-label
+{
+	color:#FFF;
+	}
+.txt-input
+{
+	background:url(../images/text-input.png) no-repeat;
+}
+.small-input
+{
+	background:url(../images/small-input.png) no-repeat;
+	}
+.date-options, .time-options
+{
+	background:url(../images/time-options.png) no-repeat;
+}
+.btn
+{
+	background:url(../images/buttton-brown.png) no-repeat;
+	}
+.btn:hover{background:url(../images/buttton-brown.png) no-repeat;}
+.comment
+{
+	background:url(../images/comment.png) no-repeat;}
+.add-btn
+{
+	
+	background:url(../images/buttton-brown.png) no-repeat;
+	width:74px;
+	height:25px;
+	}
+.add-btn:hover{
+	background:url(../images/buttton-brown.png) no-repeat;
+	width:74px;
+	height:25px;
+}
