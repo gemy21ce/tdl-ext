@@ -13,7 +13,7 @@ var POPUP={
     populateInRows:function(list,tableId){
         if(list.length == 0){
             $("#"+tableId).html('<tr><td width="100%"><div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div></td></tr>');
-//            $("#"+tableId).hide().parent().append('<div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div>');
+            //            $("#"+tableId).hide().parent().append('<div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div>');
             return;
         }
         var out='';
@@ -120,6 +120,18 @@ var POPUP={
         }
         if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
+            return;
+        }
+        if((task.reminderType != 'none')&& (task.startdate == '')){
+            POPUP.showError('\u064a\u062c\u0628 \u0623\u0646 \u062a\u0636\u064a\u0641 \u0648\u0642\u062a \u0648\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u0647\u0645\u0629 \u062d\u062a\u064a \u064a\u062a\u0645 \u062a\u0643\u0631\u0627\u0631\u0647\u0627');
+            return;
+        }
+        if((task.reminderType != 'none') && (task.until == '')){
+            POPUP.showError('\u064a\u062c\u0628 \u0623\u0646 \u062a\u062d\u062f\u062f \u0645\u062a\u064a \u064a\u0646\u062a\u0647\u064a \u062a\u0643\u0631\u0627\u0631 \u0629لمهمة');
+            return;
+        }
+        if((task.until != '')&&(task.startdate > task.until)){
+            POPUP.showError('\u062a\u0645 \u062a\u0633\u062c\u064a\u0644 \u062a\u0627\u0631\u064a\u062e \u062e\u0627\u0637\u0626 ل\u0627\u0646\u062a\u0647\u0627\u0621 \u0627\u0631تكرار');
             return;
         }
         switch(task.reminderType){
@@ -406,21 +418,21 @@ $(function(){
     /*$('select#priority').selectmenu({
         maxHeight: 550
     });*/
-//    $("#allOldTasks").click(function(){
-//        tododb.getOldTasks(function(list){
-//            POPUP.populateInRows(list, 'oldTaskTable');
-//        });
-//    });
-//    $("#completedOldTasks").click(function(){
-//        tododb.completedOldTasks(function(list){
-//            POPUP.populateInRows(list, 'oldTaskTable');
-//        },true);
-//    });
-//    $("#uncompletedOldTasks").click(function(){
-//        tododb.completedOldTasks(function(list){
-//            POPUP.populateInRows(list, 'oldTaskTable');
-//        },false);
-//    });
+    //    $("#allOldTasks").click(function(){
+    //        tododb.getOldTasks(function(list){
+    //            POPUP.populateInRows(list, 'oldTaskTable');
+    //        });
+    //    });
+    //    $("#completedOldTasks").click(function(){
+    //        tododb.completedOldTasks(function(list){
+    //            POPUP.populateInRows(list, 'oldTaskTable');
+    //        },true);
+    //    });
+    //    $("#uncompletedOldTasks").click(function(){
+    //        tododb.completedOldTasks(function(list){
+    //            POPUP.populateInRows(list, 'oldTaskTable');
+    //        },false);
+    //    });
     $("#todayAdd").click(function(){
         POPUP.addToToday();
     });
