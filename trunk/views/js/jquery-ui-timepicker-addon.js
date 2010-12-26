@@ -34,9 +34,9 @@ function Timepicker() {
 		ampm: false,
 		timeFormat: 'hh:mm tt',
 		timeOnlyTitle: '\u0627\u062e\u062a\u0631 \u0627\u0644\u0648\u0642\u062a',
-		timeText: 'Time',
-		hourText: 'Hour',
-		minuteText: 'Minute',
+		timeText: '\u0627\u0644\u0648\u0642\u062a',
+		hourText: '\u0633\u0627\u0639\u0629',
+		minuteText: '\u062f\u0642\u064a\u0642\u0629',
 		secondText: 'Second'
 	};
 	this._defaults = { // Global defaults for all the datetime picker instances
