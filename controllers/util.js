@@ -11,19 +11,22 @@ var util={
         return clone;
     },
     today:function(){
+        //format yy/mm/dd
         var date=new Date();
-        var todaystring=(date.getDate()>9?date.getDate():'0'+date.getDate())+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
+        var todaystring=date.getFullYear()+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+(date.getDate()>9?date.getDate():'0'+date.getDate());
         return todaystring;
     },
     dayInWeek:function(dateString){
+        //format yy/mm/dd
         var weekDays=['Su','Mo','Tu','We','Th','Fr','Sa'];
         var dateComponents=dateString.split("/");
-        var date=new Date(dateComponents[2],(parseInt(dateComponents[1])-1),dateComponents[0]);
+        var date=new Date(dateComponents[0],(parseInt(dateComponents[1])-1),dateComponents[2]);
         return(weekDays[date.getDay()]);
     },
     tomorrow:function(){
+        //format yy/mm/dd
         var date=new Date();
-        var todaystring=((date.getDate()+1)>9?(date.getDate()+1):'0'+(date.getDate()+1))+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
+        var todaystring=date.getFullYear()+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+((date.getDate()+1)>9?(date.getDate()+1):'0'+(date.getDate()+1));
         return todaystring;
     },
     nextDay:function(date){
@@ -47,13 +50,14 @@ var util={
         return new Date(date.getFullYear()+1, date.getMonth(), date.getDate());
     },
     dateString:function(date){
-        var todaystring=(date.getDate()>9?date.getDate():'0'+date.getDate())+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+date.getFullYear();
+        //format yy/mm/dd
+        var todaystring=date.getFullYear()+'/'+((date.getMonth()+1)>9?(date.getMonth()+1):'0'+(date.getMonth()+1))+'/'+(date.getDate()>9?date.getDate():'0'+date.getDate());
         return todaystring;
     },
     Date:function(dateString){
-        //formate dd/mm/yyyy
+        //formate yy/mm/dd
         var dates=dateString.split("/");
-        var date =new Date(dates[2],dates[1]-1,dates[0]);
+        var date =new Date(dates[0],dates[1]-1,dates[2]);
         return date;
     },
     now:function(){
