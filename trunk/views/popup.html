@@ -106,11 +106,11 @@ and open the template in the editor.
                                             <li  class="last-option"><a style="cursor: pointer;" id="uncompletedOldTasks">المهام الغير مكتملة</a></li>
                                         </ul>
                                     </div>-->
-                                    <select name="" style="float:right; direction:rtl; margin-right:10px;">
+                                    <select name="" class="oldtasks">
                                       <option id="allOldTasks" >الكل</option>
                                       <option id="completedOldTasks">المهام المكتملة</option>
-                                      <option id="uncompletedOldTasks">المهام الغير مكتملة</option>
-                                  </select>
+                                      <option selected id="uncompletedOldTasks">المهام الغير مكتملة</option>
+                                </select>
                                     <!--                                <input name="" onClick="POPUP.getSelectedRows();" type="submit" value="" class="btn"/>-->
                                 </div>
                             </div>
@@ -145,7 +145,7 @@ and open the template in the editor.
                         </div>
                         <div class="field-container">
                             <label class="field-label">درجة الأهمية</label>
-                            <select id="priority">
+                            <select id="priority" style="float:right; direction:rtl;margin-right:20px;">
                                 <!--                                <option disabled>اختر</option>-->
                                 <option value="reg">عادي</option>
                                 <option value="imp">هام</option>
@@ -166,9 +166,9 @@ and open the template in the editor.
                             <input name="" id="reminder" type="text" class="txt-input" />
                         </div>
                         <div class="field-container">
-                            <label >اعادة التذكير</label>
-                            <select id="reminderType">
-                                <option disabled value="">اختر</option>
+                            <label class="field-label">اعادة التذكير</label>
+                            <select id="reminderType" style="float:right; direction:rtl;margin-right:20px;">
+                                
                                 <option value="none">لا تعد التذكير</option>
                                 <option value="daily">يومي</option>
                                 <option value="weekly">اسبوعي</option>

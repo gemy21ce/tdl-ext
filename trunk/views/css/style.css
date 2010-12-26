@@ -442,6 +442,9 @@ tr.active-row
 .hidden{
     display: none;
 }
+.oldtasks{float:right;
+direction:rtl;
+margin-right:10px;}
 /* date time picker css*/
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
 .ui-timepicker-div dl{ text-align: left; }
