@@ -2,8 +2,7 @@
 	float:right;
 	margin-top:10px;
 	-moz-border-radius:4px;
-	border-radius: 4px;
-	background:#fff}
+	border-radius: 4px;}
 .radioDemo {
 	display:none;
 }
@@ -56,7 +55,7 @@ table.radioTable td em {
 	color: #999;
 }
 table.radioTable .highlight {
-	background-color: #B7CCE9;
+	background-color: #41779b;
 	color: #FFF;
 }
 table.radioTable thead .highlight {
@@ -97,17 +96,17 @@ table.radioTable thead .highlight {
 .radioTable a.signup {
 	display: block;
 	margin: 7px auto;
-	color: #4767A1;
+	color: #FFF;
 	font-size: 12px;
 	line-height: 1;
-	background-color: #B7CCE9;
+	background-color: #41779b;
 	width: 83px;
 	height: 26px;
 	border-radius:7px;
 	line-height:26px;
 }
 .radioTable a.signup:hover {
-				background-color: #4767A1;
+				background-color: #41779b;
 		color:#fff
 }
 
@@ -116,7 +115,7 @@ table.radioTable thead .highlight {
 	width: 103px;
 }
 table.radioTable tr.send-tr td.highlight a.signup  {
-		background-color: #4767A1;
+		background-color: #1b3c4f;
 		color:#fff}
 table.radioTable tr.send-tr td {
 	border-radius: 0px 0px 4px 4px ;}
