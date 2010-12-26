@@ -96,16 +96,21 @@ and open the template in the editor.
                                 </table>
                                 <div class="bottom-area">
                                     <span class="bottom-label">إظهار</span>
-                                    <div class="options">
+                                    <!--<div class="options">
                                         <span class="options-text">اختار</span>
-                                    </div>
-                                    <div class="menu">
+                                    </div>-->
+                                    <!--<div class="menu">
                                         <ul>
                                             <li><a style="cursor: pointer;" id="allOldTasks" >الكل</a></li>
                                             <li><a style="cursor: pointer;" id="completedOldTasks">المهام المكتملة</a></li>
                                             <li  class="last-option"><a style="cursor: pointer;" id="uncompletedOldTasks">المهام الغير مكتملة</a></li>
                                         </ul>
-                                    </div>
+                                    </div>-->
+                                    <select name="" style="float:right; direction:rtl; margin-right:10px;">
+                                      <option id="allOldTasks" >الكل</option>
+                                      <option id="completedOldTasks">المهام المكتملة</option>
+                                      <option id="uncompletedOldTasks">المهام الغير مكتملة</option>
+                                  </select>
                                     <!--                                <input name="" onClick="POPUP.getSelectedRows();" type="submit" value="" class="btn"/>-->
                                 </div>
                             </div>
@@ -161,7 +166,7 @@ and open the template in the editor.
                             <input name="" id="reminder" type="text" class="txt-input" />
                         </div>
                         <div class="field-container">
-                            <label class="field-label">اعادة التذكير</label>
+                            <label >اعادة التذكير</label>
                             <select id="reminderType">
                                 <option disabled value="">اختر</option>
                                 <option value="none">لا تعد التذكير</option>
