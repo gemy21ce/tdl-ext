@@ -386,12 +386,12 @@ $(function(){
     $("#updateTask").click(function(){
         POPUP.updateTask();
     });
-    $('select#reminderType').selectmenu({
+    /*$('select#reminderType').selectmenu({
         maxHeight: 550
-    });
-    $('select#priority').selectmenu({
+    });*/
+    /*$('select#priority').selectmenu({
         maxHeight: 550
-    });
+    });*/
     $("#allOldTasks").click(function(){
         tododb.getOldTasks(function(list){
             POPUP.populateInRows(list, 'oldTaskTable');
