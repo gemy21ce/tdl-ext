@@ -325,6 +325,7 @@ table.radioTable tr.send-tr td {
     float:right;
     font-size:10pt;
     font-weight:bold;
+	margin: 10px 19px 0px 0px;
 }
 .close-icon {
     background:url(../images/close_pop.png) no-repeat;
