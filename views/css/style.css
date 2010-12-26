@@ -458,7 +458,7 @@ direction:rtl;
 margin-right:10px;}
 /* date time picker css*/
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
-.ui-timepicker-div dl{ text-align: left; }
-.ui-timepicker-div dl dt{ height: 25px; }
-.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div dl{ text-align: left; padding-right:10px;}
+.ui-timepicker-div dl dt{ height: 25px; text-align:right;}
+.ui-timepicker-div dl dd{ margin: -25px 35px 10px 20px; }
 .ui-timepicker-div td { font-size: 90%; }
