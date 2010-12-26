@@ -3,6 +3,8 @@ body
     margin:0;
     padding:0;
     font-family:Tahoma, Geneva, sans-serif;
+    background: #1b3c4f;
+	height:300px;
 }
 a
 {
@@ -16,14 +18,14 @@ img{border:0;}
     background:url(../images/bg.jpg) no-repeat #1b3c4f;
     float:left;
     border-radius:5px;
-    box-shadow: 10px #0F3;
-	position:relative;
+    /*box-shadow: 10px #0F3;*/
+    height: 400px;
 }
 .settings
 {
     float:left;
     height:23px;
-    background:url(../images/setting.jpg) no-repeat;
+    background:url(../images/setting.png) no-repeat;
     padding-left: 25px;
     line-height:23px;
     margin:13px 0 0 13px;
@@ -38,7 +40,7 @@ img{border:0;}
 {
     float:right;
     height:31px;
-    background:url(../images/list.jpg) no-repeat right;
+    background:url(../images/list.png) no-repeat right;
     padding-right: 36px;
     line-height:31px;
     margin:9px 9px 0 0;
@@ -94,6 +96,7 @@ img{border:0;}
     float:left;
     margin-left:9px;
     margin-bottom:9px;
+    
 }
 h2.trigger {
     padding: 0 20px 0 0;
@@ -136,16 +139,11 @@ h2.active {
     font-size: 1.2em;
     width: 553px;
     clear: both;
+
 }
 .toggle_container div p {
     padding: 5px 0;
     margin: 5px 0;
-}
-{
-    font: 2.5em normal Georgia, "Times New Roman", Times, serif;
-    margin: 0 0 10px;
-    padding: 0 0 5px 0;
-    border-bottom: 1px dashed #ccc;
 }
 .toggle_container tr {
     background:#eaeaea;}
@@ -172,6 +170,9 @@ tr.active-row
     margin-top:4px;
     float:left;
     margin-bottom:7px;
+    position: relative;
+    height: 120px;
+   
 }
 .bottom-label{
     float:right;
@@ -188,6 +189,7 @@ tr.active-row
     background:url(../images/options.png) no-repeat;
     margin-right:7px;
     cursor:pointer;
+    position: relative;
 }
 .options-text, .repeat-options-text
 {
@@ -206,9 +208,9 @@ tr.active-row
     position:absolute;
     width:109px;
     background:#dddddd;
-    bottom: 43px;
-    right: 66px;
-    display:none;
+    top: 27px;
+    right: 55px;
+	display:none;
 }
 .menu ul, .repeat-menu ul
 {
@@ -339,7 +341,6 @@ tr.active-row
     height:24px;
     background:url(../images/time-options.png) no-repeat;
     cursor:pointer;
-    position:relative;
 }
 .date-options-text, .time-options-text
 {
