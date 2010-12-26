@@ -23,7 +23,7 @@ a
 .titles-container
 {
     float:left;
-    width:738px;
+   width: 753px;
     height:28px;
     background:#41779b;
     -webkit-border-radius: 5px;
@@ -364,7 +364,7 @@ table.radioTable tr.send-tr td {
     background:url(../images/buttton.png) no-repeat;
     border:0;
     margin-left:25px;
-    margin-top:12px;
+    margin-top:-4px;
     font-size:11pt;
     font-family:Tahoma, Geneva, sans-serif;
     color:#FFF;
