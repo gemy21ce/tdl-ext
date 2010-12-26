@@ -12,7 +12,7 @@ var POPUP={
     },
     populateInRows:function(list,tableId){
         if(list.length == 0){
-            $("#"+tableId).parent().html('<div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div>');
+            $("#"+tableId).html('<tr><td width="100%"><div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div></td></tr>');
 //            $("#"+tableId).hide().parent().append('<div class="no-tasks">'+'لا يوجد مهام لهذا اليوم'+'</div>');
             return;
         }
