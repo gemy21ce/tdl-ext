@@ -66,12 +66,15 @@ var POPUP={
             url:url
         });
     },
-    OpenAddForm:function(){
+    OpenAddForm:function(day){
         $("#completedcheck").hide();
         $("#updateTask").hide();
         $("#addEvent").show();
         $("#main-page").hide();
         $("#add-container").show();
+        if(day){
+            $("#startdate").attr('value',day);
+        }
     },
     backToMain:function(){
         $("#main-page").show();
@@ -320,6 +323,12 @@ var POPUP={
             out+=theme.url;
             out+="' rel='stylesheet' type='text/css' />";
         return out;
+    },
+    addToToday:function(){
+        POPUP.OpenAddForm(util.today());
+    },
+    addToTomorrow:function(){
+        POPUP.OpenAddForm(util.tomorrow());
     }
 }
 $(function(){
@@ -407,6 +416,12 @@ $(function(){
             POPUP.populateInRows(list, 'oldTaskTable');
         },false);
     });
+    $("#todayAdd").click(function(){
+        POPUP.addToToday();
+    })
+    $("#tomorrowAdd").click(function(){
+        POPUP.addToTomorrow();
+    })
     //--
 
     POPUP.init();
