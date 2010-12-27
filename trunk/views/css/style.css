@@ -458,6 +458,7 @@ tr.active-row
           margin-right:10px;}
 .completed{
     font-style: oblique;
+	text-decoration:line-through;
 }
 /* date time picker css*/
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
