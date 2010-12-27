@@ -18,7 +18,7 @@ var POPUP={
         }
         var out='';
         for(var i=0 ;i< list.length; i++){
-            out+='<tr>';
+            out+='<tr'+(list[i].expired=='true'?' class="completed" ':'')+'>';
             out+='<td width="25" height="26" align="center"><input name="" type="checkbox" value="'+list[i].id+'" /></td>';
             out+='<td width="100" height="26"onclick="POPUP.editTask('+list[i].id+')" style="cursor:pointer;">'+list[i].title+'</td>';
             out+='<td width="80" height="26" align="center">'+list[i].time+'</td>';
@@ -229,6 +229,18 @@ var POPUP={
             });
         }
     },
+    markAsDone:function(){
+        var rows=util.selectedRows();
+        if(rows.length ==0){
+            POPUP.showError('\u0644\u0645 \u064a\u062a\u0645 \u0625\u062e\u062a\u064a\u0627\u0631 \u0623\u064a \u0645\u0647\u0645\u0629');
+            return;
+        }
+        for(i in rows){
+            tododb.markAsDone(rows[i], function(){
+                POPUP.init();
+            });
+        }
+    },
     editTask:function(id){
         tododb.getTaskById(id, function(task){
             $('#taskId').attr('value',task.id);
@@ -408,6 +420,9 @@ $(function(){
     });
     $("#deletebutton").click(function(){
         POPUP.deleteRows();
+    });
+    $("#completedbutton").click(function(){
+        POPUP.markAsDone();
     });
     $("#updateTask").click(function(){
         POPUP.updateTask();

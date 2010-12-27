@@ -88,6 +88,14 @@ var tododb={
                 tododb.onError);
         });
     },
+    markAsDone:function(id,handler){
+        this.db.transaction(function(tx) {
+            tx.executeSql("UPDATE tasklist set expired= ? WHERE id= ?;",
+                [true,id],
+                handler,
+                tododb.onError);
+        });
+    },
     searchByTitle:function(title,handler){
         var matchingTasks=[];
         this.db.transaction(function(tx) {

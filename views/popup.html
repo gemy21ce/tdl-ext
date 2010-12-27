@@ -32,9 +32,9 @@ and open the template in the editor.
                 <div id="main-page">
                     <div class="tools-container">
                         <p id="text">
-                            <span id="addbutton" class="hotspot" onMouseOver="tooltip.show('<strong>اضافة</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/add.png" width="16" height="16" /></span>
-                            <span id="deletebutton" class="hotspot" onMouseOver="tooltip.show('<strong>حذف</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/delete.png" width="16" height="16" /></span>
-                            <!--                            <span class="hotspot" onMouseOver="tooltip.show('<strong>تزامن</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>-->
+                            <span id="addbutton" class="hotspot" onMouseOver="tooltip.show('<strong>\u0627\u0636\u0627\u0641\u0629</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/add.png" width="16" height="16" /></span>
+                            <span id="deletebutton" class="hotspot" onMouseOver="tooltip.show('<strong>\u062d\u0630\u0641</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/delete.png" width="16" height="16" /></span>
+                            <span id="completedbutton" class="hotspot" onMouseOver="tooltip.show('<strong>mark as done</strong>');" onMouseOut="tooltip.hide();"><img alt="" src="images/sync.png" width="19" height="18" /></span> </p>
                     </div>
                     <div class="tasks-container">
                         <h2 class="trigger active" id="todaytasks">
@@ -69,7 +69,6 @@ and open the template in the editor.
                         <div id="div_upcommingtasks" class="hidden" >
                             <h2 class="trigger" id="upcommingtasks">
                                 <a class="trigger-link">مهام قادمة</a>
-<!--                                <a class="trigger-icon"><img alt="" src="images/add.png" width="16" height="16" /></a>-->
                             </h2>
                             <div class="toggle_container">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl" id="upcommingTable">
@@ -84,7 +83,6 @@ and open the template in the editor.
                         <div id="div_oldtasks" class="hidden">
                             <h2 class="trigger" id="oldtasks">
                                 <a class="trigger-link">مهام سابقة</a>
-<!--                                <a class="trigger-icon"><img alt="" src="images/add.png" width="16" height="16" /></a>-->
                             </h2>
                             <div class="toggle_container">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="oldTaskTable" dir="rtl">
@@ -97,17 +95,16 @@ and open the template in the editor.
                                 <div class="bottom-area">
                                     <span class="bottom-label">إظهار</span>
                                     <select name="" id="oldtaskselect" class="oldtasks">
-                                      <option value="allOldTasks" >الكل</option>
-                                      <option value="completedOldTasks">المهام المكتملة</option>
-                                      <option selected value="uncompletedOldTasks">المهام الغير مكتملة</option>
-                                </select>
+                                        <option value="allOldTasks" >الكل</option>
+                                        <option value="completedOldTasks">المهام المكتملة</option>
+                                        <option selected value="uncompletedOldTasks">المهام الغير مكتملة</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div id="div_undatedtasks" class="hidden" >
                             <h2 class="trigger" id="undatedtasks">
                                 <a class="trigger-link">مهام غير مؤرخة</a>
-<!--                                <a class="trigger-icon"><img alt="" src="images/add.png" width="16" height="16" /></a>-->
                             </h2>
                             <div class="toggle_container">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0" dir="rtl" id="undatedtasksTable">
@@ -135,7 +132,6 @@ and open the template in the editor.
                         <div class="field-container">
                             <label class="field-label">درجة الأهمية</label>
                             <select id="priority" style="float:right; direction:rtl;margin-right:20px;">
-                                <!--                                <option disabled>اختر</option>-->
                                 <option value="reg">عادي</option>
                                 <option value="imp">هام</option>
                                 <option value="vimp">هام جداً</option>
@@ -157,7 +153,7 @@ and open the template in the editor.
                         <div class="field-container">
                             <label class="field-label">اعادة التذكير</label>
                             <select id="reminderType" style="float:right; direction:rtl;margin-right:20px;">
-                                
+
                                 <option value="none">لا تعد التذكير</option>
                                 <option value="daily">يومي</option>
                                 <option value="weekly">اسبوعي</option>
