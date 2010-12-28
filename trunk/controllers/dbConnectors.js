@@ -121,7 +121,6 @@ var tododb={
         });
     },
     addreminder:function(task,date,time,handler){
-        //to be checked later
         this.db.transaction(function(tx) {
             tx.executeSql("insert into reminder (taskid, date,time) values (?,?,?);",
                 [task,date,time],
@@ -147,26 +146,33 @@ var tododb={
                 tododb.onError);
         });
     },
-    deleteRec:function(taskid,handler){
+    deleteRec:function(taskids,handler){
         this.db.transaction(function(tx) {
-            tx.executeSql("DELETE FROM tasklist WHERE id=?;",
-                [taskid],
-                handler,
-                tododb.onError);
-        });
-        this.db.transaction(function(tx) {
-            tx.executeSql("DELETE FROM reminder WHERE taskid=?;",
-                [taskid],
-                handler,
-                tododb.onError);
+            for(var i=0;i<taskids.length;i++){
+                tx.executeSql("DELETE FROM tasklist WHERE id=?;",
+                    [taskids[i]],
+                    null,
+                    tododb.onError);
+                tx.executeSql("DELETE FROM reminder WHERE taskid=?;",
+                    [taskids[i]],
+                    (i==taskids.length-1?handler:null),
+                    tododb.onError);
+            }
         });
     },
-    markAsDone:function(id,handler){
+    markAsDone:function(ids,handler){
         this.db.transaction(function(tx) {
-            tx.executeSql("UPDATE tasklist set expired= ? WHERE id= ?;",
-                [true,id],
-                handler,
-                tododb.onError);
+            for(var i=0;i<ids.length;i++){
+                tx.executeSql("UPDATE tasklist set expired= ? WHERE id= ?;",
+                    [true,ids[i]],
+                    null,
+                    tododb.onError);
+                tx.executeSql("DELETE FROM reminder WHERE taskid=?;",
+                    [ids[i]],
+                    (i==ids.length-1?handler:null),
+                    tododb.onError);
+            }
+            
         });
     },
     searchByTitle:function(title,handler){
