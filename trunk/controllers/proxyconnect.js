@@ -3,8 +3,8 @@
  * and open the template in the editor.
  */
 var connectURL={
-    baseURL:'http://192.168.1.155:8080/CalendarProxy',
-    //    baseURL:'http://localhost:8084/cp',
+    //    baseURL:'http://192.168.1.155:8080/CalendarProxy',
+    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm'
 }

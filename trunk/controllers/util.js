@@ -34,7 +34,7 @@ var util={
         return date;
     },
     nextWeek:function(date){
-        date.setTime(date.getTime()+(86400000*7));
+        date.setTime(date.getTime()+604800000);
         return date;
     },
     nextMonth:function(date){
