@@ -8,7 +8,7 @@ var tododb={
         this.db.transaction(function(tx) {
             tx.executeSql("create table if not exists " +
                 "tasklist(id integer primary key asc, title string, content string,"+
-                "startdate string,time string, enddate string, reminder string, priority string, expired boolean);",
+                "startdate string,time string, enddate string, reminder string, priority string, expired boolean, gcalurl string);",
                 [],
                 function() {
                     console.log("tasklist created");
@@ -25,11 +25,57 @@ var tododb={
                 );
         });
     },
-    save: function(task, handler) {
+    save:function(task, handler) {
         this.db.transaction(function(tx) {
-            tx.executeSql("insert into tasklist (title, content, startdate,time, enddate, reminder, priority, expired) values (?,?,?,?,?,?,?,?);",
-                [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired],
-                handler,
+            tx.executeSql("insert into tasklist (title, content, startdate,time, enddate, reminder, priority, expired, gcalurl) values (?,?,?,?,?,?,?,?,?);",
+                [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired,''],
+                function(){
+                    tododb.lastAdd(function(id){
+                        var untilDate=util.Date(task.until);
+                        var nextDay=util.Date(task.startdate);
+                        switch(task.reminderType){
+                            case 'none':{
+                                break;
+                            }
+                            case 'daily':{
+                                while(nextDay.getTime() != untilDate.getTime()){
+                                    tododb.addreminder(id, util.dateString(nextDay), task.reminder, function(){});
+                                    nextDay=util.nextDay(nextDay);
+                                }
+                                chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                                break;
+                            }
+                            case 'weekly':{
+                                while(nextDay.getTime() != untilDate.getTime()){
+                                    tododb.addreminder(id, util.dateString(nextDay), task.reminder, function(){});
+                                    nextDay=util.nextWeek(nextDay);
+                                }
+                                chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                                break;
+                            }
+                            case 'monthly':{
+                                while(nextDay.getTime() != untilDate.getTime()){
+                                    tododb.addreminder(id, util.dateString(nextDay), task.reminder, function(){});
+                                    nextDay=util.nextMonth(nextDay);
+                                }
+                                chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                                break;
+                            }
+                            case 'yearly':{
+                                while(nextDay.getTime() != untilDate.getTime()){
+                                    tododb.addreminder(id, util.dateString(nextDay), task.reminder, function(){});
+                                    nextDay=util.nextYear(nextDay);
+                                }
+                                chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                                break;
+                            }
+                            default:{
+                                break;
+                            }
+                        }
+                        handler(id);
+                    });
+                },
                 tododb.onError);
         });//
     },
@@ -42,8 +88,16 @@ var tododb={
                     for (i = 0; i < results.rows.length; i++) {
                         matchingTasks.push(util.clone(results.rows.item(i)));
                     }
-                    handler(matchingTasks[0]);
+                    handler(matchingTasks[0].id);
                 },
+                tododb.onError);
+        });
+    },
+    setGoogleCalendarURL:function(taskId,gcurl,handler){
+        this.db.transaction(function(tx) {
+            tx.executeSql("UPDATE tasklist set gcalurl= ? WHERE id= ?;",
+                [gcurl,taskId],
+                handler,
                 tododb.onError);
         });
     },

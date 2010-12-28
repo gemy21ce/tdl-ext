@@ -4,7 +4,7 @@
  */
 var connectURL={
     baseURL:'http://192.168.1.155:8080/CalendarProxy',
-//    baseURL:'http://localhost:8084/cp',
+    //    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm'
 }
@@ -26,7 +26,7 @@ var proxy={
             }
         })
     },
-    saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
+    saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,id,handler){
         if(! window.localStorage.user){
             return;
         }
@@ -37,8 +37,10 @@ var proxy={
         var user=JSON.parse(window.localStorage.user);
         $.ajax({
             url:connectURL.baseURL+connectURL.postEvent,
+            dataType:'json',
             type:'POST',
             data:{
+                id:id,
                 username:user.username,
                 password:user.password,
                 title:eventTitle,
@@ -51,6 +53,9 @@ var proxy={
             },
             success:function(res){
                 handler(res);
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                
             }
         })
     }
