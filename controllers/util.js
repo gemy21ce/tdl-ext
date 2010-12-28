@@ -107,8 +107,8 @@ var util={
     icalrfc2445Date:function(date,sep){
         var dates=date.split(sep);
         var icaldate="";
-        for(var i=dates.length;i>0;i--){
-            icaldate+=dates[i-1];
+        for(var i=0;i<dates.length;i++){
+            icaldate+=dates[i];
         }
         return icaldate;
     }
