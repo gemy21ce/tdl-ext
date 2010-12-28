@@ -81,6 +81,11 @@ var OPTIONS={
         window.localStorage.synchsettings=JSON.stringify({
             settings:settings
         });
+        $.prompt('\u062a\u0645 \u062d\u0641\u0638 \u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0648\u0633\u064a\u062a\u0645 \u0627\u0644\u062a\u0632\u0627\u0645\u0646 \u062a\u0644\u0642\u0627\u0626\u064a\u0627',{
+            buttons:{},//
+            prefix:'jqismooth',
+            timeout:3000
+        });
     },
     markSelectedSynchOptions:function(){
         if(!window.localStorage.synchsettings){
