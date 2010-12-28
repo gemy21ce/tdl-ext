@@ -156,11 +156,9 @@ var POPUP={
             POPUP.showError('\u0644\u0645 \u062a\u062e\u062a\u0631 \u0623\u064a \u0645\u0647\u0645\u0629 \u0644\u062d\u0630\u0641\u0647\u0627');
             return;
         }
-        for(i in rows){
-            tododb.deleteRec(rows[i], function(){
+            tododb.deleteRec(rows, function(){
                 POPUP.init();
             });
-        }
     },
     markAsDone:function(){
         var rows=util.selectedRows();
@@ -168,11 +166,9 @@ var POPUP={
             POPUP.showError('\u0644\u0645 \u064a\u062a\u0645 \u0625\u062e\u062a\u064a\u0627\u0631 \u0623\u064a \u0645\u0647\u0645\u0629');
             return;
         }
-        for(i in rows){
-            tododb.markAsDone(rows[i], function(){
+            tododb.markAsDone(rows, function(){
                 POPUP.init();
             });
-        }
     },
     editTask:function(id){
         tododb.getTaskById(id, function(task){
