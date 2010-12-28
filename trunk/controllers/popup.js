@@ -87,12 +87,14 @@ var POPUP={
         document.addForm.reset();
     },
     addNewTask:function(task){
-        tododb.save(task, function(){
+        tododb.save(task, function(id){
             POPUP.backToMain();
             POPUP.init();
             var sync=JSON.parse(window.localStorage.synchsettings);
             if(sync.settings == 'all' || sybc.settings == task.priority){
-                chrome.extension.getBackgroundPage().proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until, function(){});
+                proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,id, function(res){
+                    tododb.setGoogleCalendarURL(res.id, res.gcurl, function(){})
+                });
             }
         });
     },
@@ -134,76 +136,7 @@ var POPUP={
             POPUP.showError('\u062a\u0645 \u062a\u0633\u062c\u064a\u0644 \u062a\u0627\u0631\u064a\u062e \u062e\u0627\u0637\u0626 ل\u0627\u0646\u062a\u0647\u0627\u0621 \u0627\u0631تكرار');
             return;
         }
-        switch(task.reminderType){
-            case '':{
-                POPUP.addNewTask(task);
-                break;
-            }
-            case 'none':{
-                POPUP.addNewTask(task);
-                tododb.lastAdd(function(id){
-                    tododb.addreminder(id.id, task.startdate, task.reminder, function(){});
-                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
-                });
-                break;
-            }
-            case 'daily':{
-                POPUP.addNewTask(task);
-                tododb.lastAdd(function(id){
-                    var untilDate=util.Date(task.until);
-                    var nextDay=util.Date(task.startdate);
-                    while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
-                        nextDay=util.nextDay(nextDay);
-                    }
-                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
-                });
-                break;
-            }
-            case 'weekly':{
-                POPUP.addNewTask(task);
-                tododb.lastAdd(function(id){
-                    var untilDate=util.Date(task.until);
-                    var nextDay=util.Date(task.startdate);
-                    while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
-                        nextDay=util.nextWeek(nextDay);
-                    }
-                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
-                });
-                break;
-            }
-            case 'monthly':{
-                POPUP.addNewTask(task);
-                tododb.lastAdd(function(id){
-                    var untilDate=util.Date(task.until);
-                    var nextDay=util.Date(task.startdate);
-                    while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
-                        nextDay=util.nextMonth(nextDay);
-                    }
-                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
-                });
-                break;
-            }
-            case 'yearly':{
-                POPUP.addNewTask(task);
-                tododb.lastAdd(function(id){
-                    var untilDate=util.Date(task.until);
-                    var nextDay=util.Date(task.startdate);
-                    while(nextDay.getTime() != untilDate.getTime()){
-                        tododb.addreminder(id.id, util.dateString(nextDay), task.reminder, function(){});
-                        nextDay=util.nextYear(nextDay);
-                    }
-                    chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
-                });
-                break;
-            }
-            default:{
-                POPUP.addNewTask(task);
-            }
-        }
-        
+        POPUP.addNewTask(task);
     },
     showError:function(msg){
         $('#errorMSG').html(msg);
