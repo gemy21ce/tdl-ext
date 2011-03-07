@@ -36,6 +36,11 @@ var tododb={
                         var dates=[];
                         switch(task.reminderType){
                             case 'none':{
+                                if(task.reminder && task.reminder != ''){
+                                    tododb.addReminders(id, [util.dateString(nextDay)], task.reminder, function(){
+                                        chrome.extension.getBackgroundPage().bg.checkTodaysReminders();
+                                    });
+                                }
                                 break;
                             }
                             case 'daily':{

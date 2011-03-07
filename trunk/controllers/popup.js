@@ -82,8 +82,8 @@ var POPUP={
         }
     },
     backToMain:function(){
-        $("#main-page").show();
         $("#add-container").hide();
+        $("#main-page").show();
         document.addForm.reset();
     },
     addNewTask:function(task){
@@ -204,8 +204,8 @@ var POPUP={
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
-        }
-        if((task.startdate != '')&& ((util.Date(task.startdate)).getTime() < (new Date()).getTime())){
+        }        
+        if((task.startdate != '')&& (task.startdate == util.today() && task.time < util.now())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
