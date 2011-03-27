@@ -26,6 +26,25 @@ var OPTIONS={
         $('#loginpopup').show();
         $("#welcomeScreen").hide();
         $("#loading").hide();
+        $("#loginloading").Loadingdotdotdot({
+            "speed": 400,
+            "maxDots": 4,
+            "message":''
+        });
+        OPTIONS.authSubLogin();
+    },
+    authSubLogin:function(){
+        chrome.tabs.create({
+            url:connectURL.baseURL + connectURL.authSub,
+            selected:true
+        });
+        proxy.getAuthSubToken(0, function(ob){
+            //store the auth token
+            window.localStorage.userAuth=ob.authToken;
+            //change ui
+            OPTIONS.hideLogin();
+            OPTIONS.loginscreen();
+        });
     },
     hideLogin:function(){
         $(".popup-overlay").hide();
@@ -33,18 +52,21 @@ var OPTIONS={
         $("#welcomeScreen").show();
     },
     loginscreen:function(){
-        var user;
-        if(window.localStorage.user){
-            user=JSON.parse(window.localStorage.user);
-            $("#welcomeScreen").html("<a onclick='OPTIONS.clearSync();' style='' class='close-icon2'></a>"+user.username+
-                '\u0645\u0631\u062d\u0628\u0627 \u0628\u0643');
+        if(window.localStorage.userAuth){
+            $("#welcomeScreen").html("<a onclick='OPTIONS.clearSync();' style='' class='close-icon2'></a>"+
+                'You Are logged in.');
         }else{
             $("#welcomeScreen").html($('#textContainer').html());
         }
     },
+    /**
+     * using AuthSub.
+     * @deprecated
+     */
     login:function(){
         var username=$("#username").attr('value');
         var password=$("#password").attr('value');
+        var capcha=$("#captext").val();
         if(username ==''|| password==''){
             OPTIONS.redCredInput('username', 'password');
             return;
@@ -52,7 +74,8 @@ var OPTIONS={
         $(".popup-overlay").hide();
         $("#loginpopup").hide();
         $("#loading").show();
-        proxy.checkCridentials(username, password, function(){
+        proxy.checkCridentials(username, password,capcha, function(){
+            //user ok.
             var usercred={
                 username:username,
                 password:password
@@ -62,14 +85,23 @@ var OPTIONS={
             $("#welcomeScreen").show();
             OPTIONS.loginscreen();
         }, function(){
+            //handling not user error
             OPTIONS.redCredInput('username', 'password');
             OPTIONS.showLogin();
+        },function(ob){
+            //capcha req.
+            $("#capchareq").show();
+            $("#capimg").attr('src',ob.capurl);
         });
     },
     clearSync:function(){
-        delete window.localStorage.user;
+        delete window.localStorage.userAuth;
         OPTIONS.loginscreen();
     },
+    /**
+     * using Auth Sub
+     * @deprecated
+     */
     redCredInput:function(el1,el2){
         $("#"+el1).addClass('badCred');
         $("#"+el2).addClass('badCred');
@@ -129,9 +161,11 @@ var OPTIONS={
 }
 $(function(){
     OPTIONS.init();
+    /*
     $('#loginbutton').click(function(){
         OPTIONS.login();
     });
+    */
     $("#closeLogin").click(function(){
         OPTIONS.hideLogin();
     })

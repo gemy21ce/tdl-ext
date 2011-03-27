@@ -14,16 +14,14 @@ and open the template in the editor.
         <link type="text/css" rel="stylesheet" href="css/fancyradio.css" />
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="js/jquery-impromptu.3.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.loadingdotdotdot.js"></script>
         <script type="text/javascript" src="../controllers/util.js"></script>
         <script type="text/javascript" src="../controllers/options.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-
                 $("div.options").click(function () {
                     $("div.menu").slideToggle("slow");
-
                 });
-
             });
         </script>
 
@@ -39,14 +37,18 @@ and open the template in the editor.
                 <div class="popup" id="loginpopup" style="display: none;">
                     <a style="" id="closeLogin" class="close-icon"></a>
                     <div class="gmail-icon"></div>
-                    <span class="login-title">تسجيل الدخول</span>
-                    <div class="login-container">
+                    <span class="login-title" style="clear: both;"><a id="loginloading" style="color: #41779B;">...</a>جاري تسجيل الدخول برجاء الانتظار</span>
+                    <!--<div class="login-container" style="display: none;">
                         <label class="login-label">البريد الالكترونى</label>
                         <input type="text" id="username" name="" class="login-input">
                         <label class="login-label">كلمة المرور</label>
                         <input type="password" id="password" name="" class="login-input">
                         <input type="button" id="loginbutton" name="" class="login-btn" value="دخول">
-                    </div>
+                        <div id="capchareq" style="display: none;">
+                            <img src="" id="capimg"/>
+                            <input type="text" id="captext" class="login-input"/>
+                        </div>
+                    </div>-->
                 </div>
                 <div style="display: none;" id="loading" class="loading">
                     <img src="images/ajax-loader.gif" alt="loading" />
@@ -70,14 +72,14 @@ and open the template in the editor.
 
                     <input name="" type="submit" id="sync" value="حفظ" class="sync-btn"/>
                 </div>
-<!--                <div class="field-container">
-                    <label class="field-label">نوع التنبية</label>
-                    <select name="" style="float:right; direction:rtl; margin-right:20px;">
-                        <option>تذكير صوتى</option>
-                        <option>تذكير عن طريق رسالة</option>
-                        <option>تذكير صوتى وظهور رسالة</option>
-                    </select>
-                </div>-->
+                <!--                <div class="field-container">
+                                    <label class="field-label">نوع التنبية</label>
+                                    <select name="" style="float:right; direction:rtl; margin-right:20px;">
+                                        <option>تذكير صوتى</option>
+                                        <option>تذكير عن طريق رسالة</option>
+                                        <option>تذكير صوتى وظهور رسالة</option>
+                                    </select>
+                                </div>-->
                 <span class="titles-container second-title">إختار قالب لقائمة المهام </span>
                 <div id="fancyRadio"></div>
             </div>

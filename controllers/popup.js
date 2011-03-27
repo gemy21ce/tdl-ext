@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var tododb=chrome.extension.getBackgroundPage().tododb;
 var POPUP={
     init:function(){
         $(".toggle_container").hide();
@@ -91,7 +91,12 @@ var POPUP={
             POPUP.backToMain();
             POPUP.init();
             var sync=JSON.parse(window.localStorage.synchsettings);
-            if(sync.settings == 'all' || sybc.settings == task.priority){
+            console.log(sync.settings)
+//            if(sync.settings == 'all' || sybc.settings == task.priority){
+            console.log($.inArray(task.priority, sync.settings))
+            console.log($.inArray("all", sync.settings))
+            console.log($.inArray(task.priority, sync.settings) != -1 || $.inArray("all", sync.settings)!= -1)
+            if($.inArray(task.priority, sync.settings) != -1 || $.inArray("all", sync.settings)!= -1){
                 proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,id, function(res){
                     tododb.setGoogleCalendarURL(res.id, res.gcurl, function(){})
                 });

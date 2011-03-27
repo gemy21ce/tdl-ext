@@ -3,9 +3,10 @@
  * and open the template in the editor.
  */
 var tododb={
+    db:this.db,
     setup:function(){
-        this.db = openDatabase('todolist', '1.0', 'To do list extension database',  5*1024*1024);
-        this.db.transaction(function(tx) {
+        tododb.db = openDatabase('todolist', '1.0', 'To do list extension database',  5*1024*1024);
+        tododb.db.transaction(function(tx) {
             tx.executeSql("create table if not exists " +
                 "tasklist(id integer primary key asc, title string, content string,"+
                 "startdate string,time string, enddate string, reminder string, priority string, expired boolean, gcalurl string);",
@@ -15,7 +16,7 @@ var tododb={
                 }
                 );
         });
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("create table if not exists " +
                 "reminder(id integer primary key asc, taskid string, date string,time string);",
                 [],
@@ -26,7 +27,7 @@ var tododb={
         });
     },
     save:function(task, handler) {
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("insert into tasklist (title, content, startdate,time, enddate, reminder, priority, expired, gcalurl) values (?,?,?,?,?,?,?,?,?);",
                 [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired,''],
                 function(){
@@ -95,7 +96,7 @@ var tododb={
     },
     lastAdd:function(handler){
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT max (id) as id FROM  tasklist ;",
                 [],
                 function(tx, results) {
@@ -108,7 +109,7 @@ var tododb={
         });
     },
     setGoogleCalendarURL:function(taskId,gcurl,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("UPDATE tasklist set gcalurl= ? WHERE id= ?;",
                 [gcurl,taskId],
                 handler,
@@ -116,7 +117,7 @@ var tododb={
         });
     },
     drop:function(table){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("drop table "+table+";",
                 [],
                 function() {
@@ -126,7 +127,7 @@ var tododb={
         });
     },
     addreminder:function(task,date,time,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("insert into reminder (taskid, date,time) values (?,?,?);",
                 [task,date,time],
                 handler,
@@ -134,7 +135,7 @@ var tododb={
         });
     },
     addReminders:function(taskid,dates,time,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             for(i=0 ; i < dates.length; i++){
                 tx.executeSql("insert into reminder (taskid, date,time) values (?,?,?)",
                     [taskid,dates[i],time],
@@ -144,7 +145,7 @@ var tododb={
         });
     },
     update:function(task,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("UPDATE tasklist set title=? ,content=? ,startdate=?, time=? ,enddate=? ,reminder=?  ,priority=? ,expired=? WHERE id= ?;",
                 [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired,task.id],
                 handler,
@@ -152,7 +153,7 @@ var tododb={
         });
     },
     deleteRec:function(taskids,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             for(var i=0;i<taskids.length;i++){
                 tx.executeSql("DELETE FROM tasklist WHERE id=?;",
                     [taskids[i]],
@@ -166,7 +167,7 @@ var tododb={
         });
     },
     markAsDone:function(ids,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             for(var i=0;i<ids.length;i++){
                 tx.executeSql("UPDATE tasklist set expired= ? WHERE id= ?;",
                     [true,ids[i]],
@@ -182,7 +183,7 @@ var tododb={
     },
     searchByTitle:function(title,handler){
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE title like(?);",
                 ['%'+title+'%'],
                 function(tx, results) {
@@ -196,7 +197,7 @@ var tododb={
     },
     searchByStartDate:function(date,handler){
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate like(?);",
                 ['%'+date+'%'],
                 function(tx, results) {
@@ -211,7 +212,7 @@ var tododb={
     getOldTasks:function(handler){
         var date=util.today();
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? AND startdate != '';",
                 [date],
                 function(tx, results) {
@@ -226,7 +227,7 @@ var tododb={
     completedOldTasks:function(handler,completed){
         var date=util.today();
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate < ? AND expired=? AND startdate != '';",
                 [date,completed],
                 function(tx, results) {
@@ -241,7 +242,7 @@ var tododb={
     getUpcommingTasks:function(handler){
         var date=util.tomorrow();
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate > ?;",
                 [date],
                 function(tx, results) {
@@ -255,7 +256,7 @@ var tododb={
     },
     getNodatedTasks:function(handler){
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE startdate == '' ;",
                 [],
                 function(tx, results) {
@@ -269,7 +270,7 @@ var tododb={
     },
     getTaskById:function(id,handler){
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM tasklist WHERE id = ?;",
                 [id],
                 function(tx, results) {
@@ -295,7 +296,7 @@ var tododb={
     todaysReminders:function(handler){
         var todaystring=util.today();
         var matchingTasks=[];
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("SELECT * FROM reminder WHERE date = ? ;",
                 [todaystring],
                 function(tx, results) {
@@ -308,7 +309,7 @@ var tododb={
         });
     },
     deleteReminder:function(id,handler){
-        this.db.transaction(function(tx) {
+        tododb.db.transaction(function(tx) {
             tx.executeSql("DELETE FROM reminder WHERE id=?;",
                 [id],
                 handler,
@@ -316,4 +317,4 @@ var tododb={
         });
     }
 }
-tododb.setup();
+//tododb.setup();
