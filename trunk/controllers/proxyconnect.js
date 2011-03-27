@@ -3,47 +3,71 @@
  * and open the template in the editor.
  */
 var connectURL={
-//        baseURL:'http://192.168.1.155:8080/CalendarProxy',
-        baseURL:'http://todolist.activedd.com',
-    //baseURL:'http://localhost:8084/cp',
+    //baseURL:'http://192.168.1.155:8080/CalendarProxy',
+    //baseURL:'http://todolist.activedd.com',
+//    baseURL:'http://calendar.activedd.com',
+    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
-    postEvent:'/proxy/createtask.htm'
+    postEvent:'/proxy/createtask.htm',
+    authSub:'/authsub/login.htm?nextcallback=../extensionloginthanks.htm',
+    fetchToken:'/authsub/fetchtoken.htm'
 }
 var proxy={
-    checkCridentials:function(username,password,successhandler,failerhandler){
+    checkCridentials:function(username,password,capcha,successhandler,failerhandler,capchaHandler){
         $.ajax({
             url:connectURL.baseURL+connectURL.checkCred,
             type:'POST',
             data:{
                 username:username,
-                password:password
+                password:password,
+                captcha:capcha
             },
             success:function(resp){
-                if(resp=='VALIDUSER'){
-                    successhandler();
-                }else{
-                    failerhandler();
+                switch (resp.status){
+                    case '200':{
+                        //ok
+                        successhandler();
+                        break;
+                    }
+                    case '501':{
+                        //invalide user name
+                        failerhandler();
+                        break;
+                    }
+                    case '502':{
+                        //capcha req
+                        capchaHandler(resp);
+                        break;
+                    }
+                    default:{
+                        console.log('Error!!!');
+                        window.location.reload();
+                    }
                 }
             }
         })
     },
     saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,id,handler){
-        if(! window.localStorage.user){
+        if(! window.localStorage.userAuth){
+            console.log(window.localStorage.userAuth)
             return;
         }
+        console.log('sync')
         byday=util.dayInWeek(startDate);
         startDate=util.icalrfc2445Date(startDate,"/");
         endDate=util.icalrfc2445Date(endDate,"/");
         until=util.icalrfc2445Date(until, "/");
-        var user=JSON.parse(window.localStorage.user);
+        var user=window.localStorage.userAuth;
+        console.log(connectURL.baseURL+connectURL.postEvent)
         $.ajax({
             url:connectURL.baseURL+connectURL.postEvent,
             dataType:'json',
             type:'POST',
             data:{
                 id:id,
-                username:user.username,
-                password:user.password,
+//                username:user.username,
+//                password:user.password,
+                userauth:user,
                 title:eventTitle,
                 content:eventContent,
                 dtstart:startDate,
@@ -57,6 +81,31 @@ var proxy={
             },
             error:function(XMLHttpRequest, textStatus, errorThrown){
                 
+            }
+        })
+    },
+    getAuthSubToken:function(count,handler){
+        if(! count){
+            count=0;
+        }
+        $.ajax({
+            url:connectURL.baseURL+connectURL.fetchToken,
+            dataType:'json',
+            success:function(ob){
+                if((! ob || !ob.status == '200')&& count < 60){
+                    window.setTimeout(function (){
+                        proxy.getAuthSubToken(count+1, handler);
+                    }, 1000);
+                }else{
+                    handler(ob);
+                }
+            },
+            error:function(){
+                if(count<60){
+                    window.setTimeout(function(){
+                        proxy.getAuthSubToken(count+1, handler);
+                    }, 1000);
+                }
             }
         })
     }
