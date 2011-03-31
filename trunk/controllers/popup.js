@@ -91,11 +91,7 @@ var POPUP={
             POPUP.backToMain();
             POPUP.init();
             var sync=JSON.parse(window.localStorage.synchsettings);
-            console.log(sync.settings)
 //            if(sync.settings == 'all' || sybc.settings == task.priority){
-            console.log($.inArray(task.priority, sync.settings))
-            console.log($.inArray("all", sync.settings))
-            console.log($.inArray(task.priority, sync.settings) != -1 || $.inArray("all", sync.settings)!= -1)
             if($.inArray(task.priority, sync.settings) != -1 || $.inArray("all", sync.settings)!= -1){
                 proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,id, function(res){
                     tododb.setGoogleCalendarURL(res.id, res.gcurl, function(){})
@@ -177,6 +173,7 @@ var POPUP={
     },
     editTask:function(id){
         tododb.getTaskById(id, function(task){
+            console.log(task)
             $('#taskId').attr('value',task.id);
             $('#taskTitle').attr('value',task.title);
             $('#content').attr('value',task.content);
@@ -184,6 +181,13 @@ var POPUP={
             $('#time').attr('value',task.time);
             $('#reminder').attr('value',task.reminder);
             $('#priority').attr('value',task.priority);
+            $("#reminderType").val(task.reminder_type);
+            if(task.reminder_type == 'none'){
+                $("#until").hide();
+            }else{
+                $("#until").show();
+            }
+            $("#until").val(task.remind_until);
             if(task.expired=='true'){
                 document.getElementById('completedTask').checked=true
             }
@@ -323,6 +327,16 @@ $(function(){
     $("div.repeat-options").click(function () {
         $("div.repeat-menu").slideToggle("slow");
 
+    });
+    //reminder
+    $("#reminderType").change(function(){
+        if($(this).val() == 'none'){
+            $('#untilL').hide();
+            $('#until').hide();
+        }else{
+            $('#untilL').show();
+            $('#until').show();
+        }
     });
     //--
     //date time picker
