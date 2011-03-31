@@ -9,7 +9,8 @@ var tododb={
         tododb.db.transaction(function(tx) {
             tx.executeSql("create table if not exists " +
                 "tasklist(id integer primary key asc, title string, content string,"+
-                "startdate string,time string, enddate string, reminder string, priority string, expired boolean, gcalurl string);",
+                "startdate string,time string, enddate string, reminder string, priority string, expired boolean, gcalurl string,"+
+                "reminder_type string, remind_until string);",
                 [],
                 function() {
                     console.log("tasklist created");
@@ -27,9 +28,10 @@ var tododb={
         });
     },
     save:function(task, handler) {
+        console.log(task)
         tododb.db.transaction(function(tx) {
-            tx.executeSql("insert into tasklist (title, content, startdate,time, enddate, reminder, priority, expired, gcalurl) values (?,?,?,?,?,?,?,?,?);",
-                [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired,''],
+            tx.executeSql("insert into tasklist (title, content, startdate,time, enddate, reminder, priority, expired, gcalurl,reminder_type,remind_until) values (?,?,?,?,?,?,?,?,?,?,?);",
+                [task.title,task.content,task.startdate,task.time,task.enddate,task.reminder,task.priority,task.expired,'',task.reminderType,task.until],
                 function(){
                     tododb.lastAdd(function(id){
                         var untilDate=util.Date(task.until);
