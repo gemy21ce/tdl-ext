@@ -175,7 +175,6 @@ var POPUP={
     },
     editTask:function(id){
         tododb.getTaskById(id, function(task){
-            console.log(task)
             if(task.gcalurl){
                 POPUP.updateTaskGCALID=task.gcalurl;
             }else{
