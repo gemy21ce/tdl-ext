@@ -91,10 +91,12 @@ var POPUP={
             POPUP.backToMain();
             POPUP.init();
             var sync=JSON.parse(window.localStorage.synchsettings);
-//            if(sync.settings == 'all' || sybc.settings == task.priority){
+            //            if(sync.settings == 'all' || sybc.settings == task.priority){
             if($.inArray(task.priority, sync.settings) != -1 || $.inArray("all", sync.settings)!= -1){
-                proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,id, function(res){
-                    tododb.setGoogleCalendarURL(res.id, res.gcurl, function(){})
+                chrome.extension.sendRequest({
+                    'action':'synchTOGCAL',
+                    data:task,
+                    id:id
                 });
             }
         });
@@ -157,9 +159,9 @@ var POPUP={
             POPUP.showError('\u0644\u0645 \u062a\u062e\u062a\u0631 \u0623\u064a \u0645\u0647\u0645\u0629 \u0644\u062d\u0630\u0641\u0647\u0627');
             return;
         }
-            tododb.deleteRec(rows, function(){
-                POPUP.init();
-            });
+        tododb.deleteRec(rows, function(){
+            POPUP.init();
+        });
     },
     markAsDone:function(){
         var rows=util.selectedRows();
@@ -167,13 +169,18 @@ var POPUP={
             POPUP.showError('\u0644\u0645 \u064a\u062a\u0645 \u0625\u062e\u062a\u064a\u0627\u0631 \u0623\u064a \u0645\u0647\u0645\u0629');
             return;
         }
-            tododb.markAsDone(rows, function(){
-                POPUP.init();
-            });
+        tododb.markAsDone(rows, function(){
+            POPUP.init();
+        });
     },
     editTask:function(id){
         tododb.getTaskById(id, function(task){
             console.log(task)
+            if(task.gcalurl){
+                POPUP.updateTaskGCALID=task.gcalurl;
+            }else{
+                POPUP.updateTaskGCALID=null;
+            }
             $('#taskId').attr('value',task.id);
             $('#taskTitle').attr('value',task.title);
             $('#content').attr('value',task.content);
@@ -221,6 +228,13 @@ var POPUP={
         if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
+        }
+        if(POPUP.updateTaskGCALID){
+            task.icalUID=POPUP.updateTaskGCALID;
+            chrome.extension.sendRequest({
+                'action':'updateTask',
+                data:task
+            });
         }
         tododb.update(task, function(){
             POPUP.init();

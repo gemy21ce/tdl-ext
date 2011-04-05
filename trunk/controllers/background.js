@@ -8,7 +8,9 @@ var bg={
     setup:function(){
         tododb.setup();
         if(! window.localStorage.synchsettings){
-            window.localStorage.synchsettings=JSON.stringify({settings:['all']});
+            window.localStorage.synchsettings=JSON.stringify({
+                settings:['all']
+                });
         }
     },
     fireNotificationAlarm:function(title,msg){
@@ -45,3 +47,24 @@ $(function(){
 
 });
 
+/**
+ * Handles data sent via chrome.extension.sendRequest().
+ * @param request Object Data sent in the request.
+ * @param sender Object Origin of the request.
+ * @param callback Function The method to call when the request completes.
+ */
+function onRequest(request, sender, callback) {
+    if(request.action=='synchTOGCAL'){
+        var task=request.data;
+        proxy.saveTask(task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,request.id, function(res){
+            tododb.setGoogleCalendarURL(res.id, res.gcurl, function(){});
+        });
+    }
+    if(request.action == 'updateTask'){
+        var task=request.data;
+        proxy.updateTask(task.icalUID,task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until, function(){});
+    }
+}
+
+// Wire up the listener.
+chrome.extension.onRequest.addListener(onRequest);
