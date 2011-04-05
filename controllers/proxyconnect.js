@@ -50,7 +50,6 @@ var proxy={
     },
     saveTask:function(eventTitle,eventContent,startDate,endDate,byday,freq,until,id,handler){
         if(! window.localStorage.userAuth){
-            console.log(window.localStorage.userAuth)
             return;
         }
         byday=util.dayInWeek(startDate);
@@ -58,7 +57,6 @@ var proxy={
         endDate=util.icalrfc2445Date(endDate,"/");
         until=util.icalrfc2445Date(until, "/");
         var user=window.localStorage.userAuth;
-        console.log(connectURL.baseURL+connectURL.postEvent)
         $.ajax({
             url:connectURL.baseURL+connectURL.postEvent,
             dataType:'json',
@@ -109,7 +107,6 @@ var proxy={
     },
     updateTask:function(icalUID,eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
         if(! window.localStorage.userAuth){
-            console.log(window.localStorage.userAuth)
             return;
         }
         byday=util.dayInWeek(startDate);
@@ -117,7 +114,6 @@ var proxy={
         endDate=util.icalrfc2445Date(endDate,"/");
         until=util.icalrfc2445Date(until, "/");
         var user=window.localStorage.userAuth;
-        console.log(connectURL.baseURL+connectURL.postEvent)
         $.ajax({
             url:connectURL.baseURL+connectURL.updateTask,
             dataType:'json',
