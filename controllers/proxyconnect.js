@@ -6,11 +6,12 @@ var connectURL={
     //baseURL:'http://192.168.1.155:8080/CalendarProxy',
     //baseURL:'http://todolist.activedd.com',
     baseURL:'http://calendar.activedd.com',
-//    baseURL:'http://localhost:8084/cp',
+    //    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm',
     authSub:'/authsub/login.htm?nextcallback=../extensionloginthanks.htm',
-    fetchToken:'/authsub/fetchtoken.htm'
+    fetchToken:'/authsub/fetchtoken.htm',
+    updateTask:'/proxy/updteTask.hmt'
 }
 var proxy={
     checkCridentials:function(username,password,capcha,successhandler,failerhandler,capchaHandler){
@@ -52,7 +53,6 @@ var proxy={
             console.log(window.localStorage.userAuth)
             return;
         }
-        console.log('sync')
         byday=util.dayInWeek(startDate);
         startDate=util.icalrfc2445Date(startDate,"/");
         endDate=util.icalrfc2445Date(endDate,"/");
@@ -65,8 +65,6 @@ var proxy={
             type:'POST',
             data:{
                 id:id,
-//                username:user.username,
-//                password:user.password,
                 userauth:user,
                 title:eventTitle,
                 content:eventContent,
@@ -106,6 +104,40 @@ var proxy={
                         proxy.getAuthSubToken(count+1, handler);
                     }, 1000);
                 }
+            }
+        })
+    },
+    updateTask:function(icalUID,eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
+        if(! window.localStorage.userAuth){
+            console.log(window.localStorage.userAuth)
+            return;
+        }
+        byday=util.dayInWeek(startDate);
+        startDate=util.icalrfc2445Date(startDate,"/");
+        endDate=util.icalrfc2445Date(endDate,"/");
+        until=util.icalrfc2445Date(until, "/");
+        var user=window.localStorage.userAuth;
+        console.log(connectURL.baseURL+connectURL.postEvent)
+        $.ajax({
+            url:connectURL.baseURL+connectURL.updateTask,
+            dataType:'json',
+            type:'POST',
+            data:{
+                icalUID:icalUID,
+                userauth:user,
+                title:eventTitle,
+                content:eventContent,
+                dtstart:startDate,
+                dtend:endDate,
+                freq:freq,
+                byday:byday,
+                until:until
+            },
+            success:function(res){
+                handler(res);
+            },
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+
             }
         })
     }
