@@ -23,7 +23,7 @@ a
 .titles-container
 {
     float:left;
-   width: 753px;
+    width: 753px;
     height:28px;
     background:#41779b;
     -webkit-border-radius: 5px;
@@ -325,7 +325,8 @@ table.radioTable tr.send-tr td {
     float:right;
     font-size:10pt;
     font-weight:bold;
-	margin: 10px 19px 0px 0px;
+    margin: 10px 19px 0px 0px;
+    text-align: right;
 }
 .close-icon {
     background:url(../images/close_pop.png) no-repeat;
@@ -335,11 +336,12 @@ table.radioTable tr.send-tr td {
     cursor:pointer;
 }
 .close-icon2 {
-    background:url(../images/close_pop.png) no-repeat;
+    background:url(../images/close_pop.png) no-repeat right;
     width:16px;
     height: 16px;
     cursor:pointer;
-    padding-right: 20px;
+    padding-left:20px;
+    float: right;
 }
 .popup-overlay
 {
@@ -369,7 +371,7 @@ table.radioTable tr.send-tr td {
     font-family:Tahoma, Geneva, sans-serif;
     color:#FFF;
     cursor: pointer;
-	padding-bottom:7px;
+    padding-bottom:7px;
 }
 .sync-btn:hover
 {background:url(../images/buttton-hover.png) no-repeat;}
