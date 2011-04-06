@@ -54,7 +54,7 @@ var OPTIONS={
     loginscreen:function(){
         if(window.localStorage.userAuth){
             $("#welcomeScreen").html("<a onclick='OPTIONS.clearSync();' style='' class='close-icon2'></a>"+
-                'You Are logged in.');
+                'انت الأن متصل');
         }else{
             $("#welcomeScreen").html($('#textContainer').html());
         }
@@ -141,10 +141,10 @@ var OPTIONS={
             var count=5+i;
             if(i==OPTIONS.Theme.id){
                 tr1+='<td class="highlight '+count+'"><img src="'+OPTIONS.Themes[i].thumb+'" alt="" width="150"  /></td>';
-                tr2+='<td class=" highlight '+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>أضف</strong></a></td>';
+                tr2+='<td class=" highlight '+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>ط£ط¶ظ?</strong></a></td>';
             }else{
                 tr1+='<td class="'+count+'"><img src="'+OPTIONS.Themes[i].thumb+'" alt="" width="150"  /></td>';
-                tr2+='<td class="'+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>أضف</strong></a></td>';
+                tr2+='<td class="'+count+'"><input class="radioDemo" name="Mbps"value="5Mbps" type="radio" /><a style="cursor:pointer;" onclick="OPTIONS.setTheme('+OPTIONS.Themes[i].id+')" class="signup Mbps" title="'+count+'"><strong>ط£ط¶ظ?</strong></a></td>';
             }
 
         }
