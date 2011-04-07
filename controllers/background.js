@@ -62,7 +62,7 @@ function onRequest(request, sender, callback) {
     }
     if(request.action == 'updateTask'){
         var task=request.data;
-        proxy.updateTask(task.icalUID,task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until, function(){});
+        proxy.updateTask(task.old.gcalurl,task.title, task.content, task.startdate, task.startdate, '', task.reminderType, task.until,task.old.title,task.old.startdate, function(){});
     }
 }
 

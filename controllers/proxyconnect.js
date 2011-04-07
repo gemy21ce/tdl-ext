@@ -5,13 +5,13 @@
 var connectURL={
     //baseURL:'http://192.168.1.155:8080/CalendarProxy',
     //baseURL:'http://todolist.activedd.com',
-    baseURL:'http://calendar.activedd.com',
-    //    baseURL:'http://localhost:8084/cp',
+    //    baseURL:'http://calendar.activedd.com',
+    baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm',
     authSub:'/authsub/login.htm?nextcallback=../extensionloginthanks.htm',
     fetchToken:'/authsub/fetchtoken.htm',
-    updateTask:'/proxy/updteTask.hmt'
+    updateTask:'/proxy/updteTask.htm'
 }
 var proxy={
     checkCridentials:function(username,password,capcha,successhandler,failerhandler,capchaHandler){
@@ -105,14 +105,15 @@ var proxy={
             }
         })
     },
-    updateTask:function(icalUID,eventTitle,eventContent,startDate,endDate,byday,freq,until,handler){
+    updateTask:function(icalUID,eventTitle,eventContent,startDate,endDate,byday,freq,until,oldTitle,oldstartDate,handler){
         if(! window.localStorage.userAuth){
             return;
         }
+        console.log(icalUID)
         byday=util.dayInWeek(startDate);
-        startDate=util.icalrfc2445Date(startDate,"/");
-        endDate=util.icalrfc2445Date(endDate,"/");
-        until=util.icalrfc2445Date(until, "/");
+        startDate=startDate?util.icalrfc2445Date(startDate,"/"):null;
+        endDate=endDate?util.icalrfc2445Date(endDate,"/"):null;
+        until=until?util.icalrfc2445Date(until, "/"):null;
         var user=window.localStorage.userAuth;
         $.ajax({
             url:connectURL.baseURL+connectURL.updateTask,
@@ -127,7 +128,9 @@ var proxy={
                 dtend:endDate,
                 freq:freq,
                 byday:byday,
-                until:until
+                until:until,
+                oldtitle:oldTitle,
+                olddtstart:oldstartDate
             },
             success:function(res){
                 handler(res);
