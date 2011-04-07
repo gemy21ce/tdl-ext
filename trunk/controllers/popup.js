@@ -176,9 +176,9 @@ var POPUP={
     editTask:function(id){
         tododb.getTaskById(id, function(task){
             if(task.gcalurl){
-                POPUP.updateTaskGCALID=task.gcalurl;
+                POPUP.updateOTask=task;
             }else{
-                POPUP.updateTaskGCALID=null;
+                POPUP.updateOTask=null;
             }
             $('#taskId').attr('value',task.id);
             $('#taskTitle').attr('value',task.title);
@@ -228,8 +228,8 @@ var POPUP={
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        if(POPUP.updateTaskGCALID){
-            task.icalUID=POPUP.updateTaskGCALID;
+        if(POPUP.updateOTask){
+            task.old=POPUP.updateOTask;
             chrome.extension.sendRequest({
                 'action':'updateTask',
                 data:task
