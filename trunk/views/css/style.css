@@ -139,7 +139,33 @@ h2.active {
     font-size: 1.2em;
     width: 553px;
     clear: both;
+	background:#eaeaea;
+	height:120px;
+	overflow-x:hidden;
+	overflow-y:auto;
 
+}
+.toggle_container::-webkit-scrollbar {
+    width: 12px;
+    height: 16px;
+    cursor:pointer;
+}
+.toggle_container::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+    height: 30px;
+    display: block;
+    background-color: transparent;
+    display:none;
+}
+.toggle_container::-webkit-scrollbar-track-piece {
+    cursor:pointer;
+    background:#41779b;
+}
+.toggle_container::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#d1cfcf));
+    border:1px solid #999;
+    -webkit-border-radius: 3px;
+    cursor:pointer;
 }
 .toggle_container div p {
     padding: 5px 0;
