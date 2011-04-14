@@ -139,10 +139,10 @@ h2.active {
     font-size: 1.2em;
     width: 553px;
     clear: both;
-	background:#eaeaea;
-	height:120px;
-	overflow-x:hidden;
-	overflow-y:auto;
+    background:#eaeaea;
+    height:190px;
+    overflow-x:hidden;
+    overflow-y:auto;
 
 }
 .toggle_container::-webkit-scrollbar {
@@ -484,7 +484,7 @@ tr.active-row
           margin-right:10px;}
 .completed{
     font-style: oblique;
-	text-decoration:line-through;
+    text-decoration:line-through;
 }
 /* date time picker css*/
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
