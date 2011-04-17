@@ -5,16 +5,16 @@
 var OPTIONS={
     Themes:[{
         'id':0,
-        'url':'css/brown.css',
-        'thumb':'images/green_bg.jpg'
+        'url':'',
+        'thumb':'images/blue_bg.jpg'
     },{
         'id':1,
         'url':'css/white.css',
         'thumb':'images/red_bg.jpg'
     },{
         'id':2,
-        'url':'brown.css',
-        'thumb':'images/blue_bg.jpg'
+        'url':'css/brown.css',
+        'thumb':'images/green_bg.jpg'
     }],
     init:function(){
         OPTIONS.loginscreen();
