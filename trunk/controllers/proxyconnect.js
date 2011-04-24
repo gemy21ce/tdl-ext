@@ -5,8 +5,8 @@
 var connectURL={
     //baseURL:'http://192.168.1.155:8080/CalendarProxy',
     //baseURL:'http://todolist.activedd.com',
-    //    baseURL:'http://calendar.activedd.com',
-    baseURL:'http://localhost:8084/cp',
+    baseURL:'http://calendar.activedd.com',
+    //baseURL:'http://localhost:8084/cp',
     checkCred:'/proxy/checkcred.htm',
     postEvent:'/proxy/createtask.htm',
     authSub:'/authsub/login.htm?nextcallback=../extensionloginthanks.htm',

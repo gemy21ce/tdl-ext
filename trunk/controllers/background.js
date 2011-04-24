@@ -31,7 +31,7 @@ var bg={
         for(var i=0; i< bg.todaysReminders.length; i++){
             if(bg.todaysReminders[i].time == now){
                 tododb.getTaskById(bg.todaysReminders[i].taskid, function(task){
-                    bg.fireNotificationAlarm(task.title,task.content);
+                    bg.fireNotificationAlarm(task.title,task.content+ " at " +task.startdate +" "+task.time);
                 });
                 tododb.deleteReminder(bg.todaysReminders[i].id,null);
             }
