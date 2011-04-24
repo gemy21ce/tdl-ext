@@ -129,7 +129,7 @@ var OPTIONS={
         }
     },
     getThemes:function(){
-        if(window.localStorage.theme == null || window.localStorage.theme == undefined){
+        if(! window.localStorage.theme){
             window.localStorage.theme=JSON.stringify(OPTIONS.Themes[0]);
         }
         OPTIONS.Theme=JSON.parse(window.localStorage.theme);
