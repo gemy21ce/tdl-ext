@@ -22,7 +22,7 @@ var POPUP={
             out+='<td width="25" height="26" align="center"><input name="" type="checkbox" value="'+list[i].id+'" /></td>';
             out+='<td width="100" height="26"onclick="POPUP.editTask('+list[i].id+')" style="cursor:pointer;">'+list[i].title+'</td>';
             out+='<td width="80" height="26" align="center">'+list[i].time+'</td>';
-            out+='<td width="185" height="26">'+util.cutText(list[i].content, 20)+'</td>';
+            out+='<td width="185" height="26">'+util.cutText(list[i].content.toString(), 20)+'</td>';
             out+='<td width="100" height="26">'+list[i].startdate+'</td>';
             out+='<td width="25" height="26" align="center"><a onclick="POPUP.editTask('+list[i].id+')" style="cursor:pointer;"><img src="images/edit.png" width="19" height="22" alt="edit" /></a></td>';
             out+='</tr>'
