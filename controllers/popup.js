@@ -80,6 +80,7 @@ var POPUP={
         if(day){
             $("#startdate").attr('value',day);
         }
+        $('#time').datetimepicker('setDate', (new Date()) );
     },
     backToMain:function(){
         $("#add-container").hide();
@@ -103,30 +104,33 @@ var POPUP={
     },
     validate:function(){
         var task={
-            title:$('#taskTitle').attr('value'),
-            content:$('#content').attr('value'),
-            startdate:$('#startdate').attr('value'),
-            time:$('#time').attr('value'),
+            title:$('#taskTitle').val(),
+            content:$('#content').val(),
+            startdate:$('#startdate').val(),
+            time:$('#time').val(),
             enddate:'',
-            reminder:$('#reminder').attr('value'),
-            priority:$('#priority').attr('value'),
+            reminder:$('#reminder').val(),
+            priority:$('#priority').val(),
             expired:false,
-            reminderType:$("#reminderType").attr('value'),
-            until:$("#until").attr('value')
+            reminderType:$("#reminderType").val(),
+            until:$("#until").val()
         }
         if(task.title == '' ){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
         }
-        if((task.startdate != '')&&(task.startdate < util.today())){
+        var eventDate=new Date(task.startdate);
+        var timePicker=$("#time").datetimepicker('getDate');
+        eventDate.setHours(timePicker.getHours(), timePicker.getMinutes());
+        if((task.startdate != '')&&(eventDate.getTime() < new Date().getTime())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
-        if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
-            POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
-            return;
-        }
+//        if((task.time != '')&&(task.startdate == util.today() && task.time < util.now())){
+//            POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
+//            return;
+//        }
         if((task.reminderType != 'none')&& (task.startdate == '')){
             POPUP.showError('\u064a\u062c\u0628 \u0623\u0646 \u062a\u0636\u064a\u0641 \u0648\u0642\u062a \u0648\u062a\u0627\u0631\u064a\u062e \u0627\u0644\u0645\u0647\u0645\u0629 \u062d\u062a\u064a \u064a\u062a\u0645 \u062a\u0643\u0631\u0627\u0631\u0647\u0627');
             return;
@@ -201,26 +205,30 @@ var POPUP={
             $("#completedcheck").show();
             $("#updateTask").show();
             $("#addEvent").hide();
+            //here
         })
     },
     updateTask:function(){
         var task={
-            id:$('#taskId').attr('value'),
-            title:$('#taskTitle').attr('value'),
-            content:$('#content').attr('value'),
-            startdate:$('#startdate').attr('value'),
-            time:$('#time').attr('value'),
+            id:$('#taskId').val(),
+            title:$('#taskTitle').val(),
+            content:$('#content').val(),
+            startdate:$('#startdate').val(),
+            time:$('#time').val(),
             enddate:'',
-            reminder:$('#reminder').attr('value'),
-            priority:$('#priority').attr('value'),
+            reminder:$('#reminder').val(),
+            priority:$('#priority').val(),
             expired:$('#completedTask').attr('checked')
         }
         if(task.title == ''){
             POPUP.showError('\u0628\u0639\u0636 \u0627\u0644\u062d\u0642\u0648\u0644 \u064a\u062c\u0628 \u0623\u0646 \u062a\u0643\u0648\u0646 \u0645\u0643\u062a\u0645\u0644\u0629');
             POPUP.calledRed('required', 2000);
             return;
-        }        
-        if((task.startdate != '')&& (task.startdate == util.today() && task.time < util.now())){
+        }
+        var eventDate=new Date(task.startdate);
+        var timePicker=$("#time").datetimepicker('getDate');
+        eventDate.setHours(timePicker.getHours(), timePicker.getMinutes());
+        if((task.startdate != '')&& (eventDate.getTime() < new Date().getTime())){
             POPUP.showError('\u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0636\u0627\u0641\u0629 \u0645\u0647\u0645\u0629 \u0641\u064a \u064a\u0648\u0645 \u0633\u0627\u0628\u0642');
             return;
         }
